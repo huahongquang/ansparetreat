@@ -2525,3 +2525,49 @@ select.form-input option {
     }
 }
 
+/* Modals Light Theme Typography & Background Fixes */
+.article-dialog .modal-content {
+    background-color: var(--bg-dark-soft) !important; /* Warm sand cream/parchment */
+    border: 1.5px solid var(--accent-gold) !important;
+    border-radius: 12px !important;
+}
+
+.article-modal-title {
+    color: var(--text-white) !important; /* Deep charcoal */
+}
+
+.article-content-html {
+    color: var(--text-white) !important; /* Deep charcoal */
+}
+
+.article-content-html p,
+.article-content-html li,
+.article-content-html div,
+.article-content-html h4 {
+    color: var(--text-white) !important;
+}
+
+#detail-modal-title {
+    color: var(--text-white) !important;
+}
+
+#detail-modal-desc {
+    color: var(--text-gray) !important;
+}
+
+#detail-modal-steps {
+    color: var(--text-white) !important;
+}
+
+#detail-modal-steps div {
+    color: var(--text-white) !important;
+}
+
+.article-meta-header span {
+    color: var(--text-gray) !important;
+}
+
+.article-meta-header .gold-text {
+    color: var(--accent-gold) !important;
+}
+

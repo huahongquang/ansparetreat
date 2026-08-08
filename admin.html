@@ -930,6 +930,10 @@
                             <label class="input-label">Tour Video File Path (e.g. img/An Spa Render 2_3.mp4)</label>
                             <input type="text" class="form-control" id="editor-video-src" placeholder="img/An Spa Render 2_3.mp4">
                         </div>
+                        <div class="input-group" style="margin-top: 15px;">
+                            <label class="input-label">Video Poster Cover Image (Ảnh bìa Video)</label>
+                            <select class="form-control" id="editor-video-poster"></select>
+                        </div>
                     </div>
                 <!-- ABOUT SANCTUARY SECTION (BLACK BOX) -->
                 <div class="card">
@@ -1441,6 +1445,10 @@
                 document.getElementById('editor-about-img-main').value = data.about.image_main || "assets/images/1.jpg";
                 document.getElementById('editor-about-img-sub1').value = data.about.image_sub1 || "assets/images/spa_img_10.jpg";
                 document.getElementById('editor-about-img-sub2').value = data.about.image_sub2 || "assets/images/spa_img_22.jpg";
+                
+                if (data.about.video_poster) {
+                    document.getElementById('editor-video-poster').value = data.about.video_poster;
+                }
             }
         }
 
@@ -1467,6 +1475,7 @@
             data.about.image_sub2 = document.getElementById('editor-about-img-sub2').value;
             
             data.about.video_src = document.getElementById('editor-video-src').value;
+            data.about.video_poster = document.getElementById('editor-video-poster').value;
         }
 
         function populateImageSelectors() {
@@ -1475,16 +1484,19 @@
             const aboutMain = document.getElementById('editor-about-img-main');
             const aboutSub1 = document.getElementById('editor-about-img-sub1');
             const aboutSub2 = document.getElementById('editor-about-img-sub2');
+            const videoPoster = document.getElementById('editor-video-poster');
             
             if (select1) select1.innerHTML = "";
             if (select2) select2.innerHTML = "";
             if (aboutMain) aboutMain.innerHTML = "";
             if (aboutSub1) aboutSub1.innerHTML = "";
             if (aboutSub2) aboutSub2.innerHTML = "";
+            if (videoPoster) videoPoster.innerHTML = "";
             
             // Add current options
             const imagePaths = [
                 "assets/images/1.jpg",
+                "assets/images/2048.jpg",
                 "assets/images/spa_img_1.jpg",
                 "assets/images/spa_img_2.jpg",
                 "assets/images/spa_img_3.jpg",
@@ -1518,6 +1530,7 @@
                 if (aboutMain) aboutMain.appendChild(opt.cloneNode(true));
                 if (aboutSub1) aboutSub1.appendChild(opt.cloneNode(true));
                 if (aboutSub2) aboutSub2.appendChild(opt.cloneNode(true));
+                if (videoPoster) videoPoster.appendChild(opt.cloneNode(true));
             });
         }
 

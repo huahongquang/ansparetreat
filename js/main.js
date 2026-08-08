@@ -195,14 +195,19 @@ function loadAboutSectionData() {
     const sub2Img = document.getElementById("about-img-sub2");
     if (sub2Img) sub2Img.src = aboutData.image_sub2;
 
-    // Update video tour source
-    const tourVideoSrc = document.getElementById("tour-video-source");
-    const tourVideoPlayer = document.getElementById("tour-video-player");
-    if (tourVideoSrc && tourVideoPlayer) {
-        const currentSrc = tourVideoSrc.getAttribute("src");
-        if (currentSrc !== aboutData.video_src) {
-            tourVideoSrc.src = aboutData.video_src;
-            tourVideoPlayer.load();
+    // Update video tour source & poster
+    const galleryVideo = document.getElementById("gallery-video");
+    if (galleryVideo && aboutData.video_src) {
+        if (aboutData.video_poster) {
+            galleryVideo.setAttribute("poster", aboutData.video_poster);
+        }
+        const sourceTag = galleryVideo.querySelector("source");
+        if (sourceTag) {
+            const currentSrc = sourceTag.getAttribute("src");
+            if (currentSrc !== aboutData.video_src) {
+                sourceTag.setAttribute("src", aboutData.video_src);
+                galleryVideo.load();
+            }
         }
     }
 }

@@ -709,5 +709,42 @@
     "image_sub2": "assets/images/1.jpg",
     "video_src": "img/An Spa Render 2_3.mp4",
     "video_poster": "assets/images/2048.jpg"
-  }
+  },
+  "faqs": [
+    {
+      "id": 1,
+      "question_vi": "An Spa Retreat có phòng riêng không?",
+      "answer_vi": "Có. Chúng tôi có các phòng trị liệu riêng biệt cho cá nhân, phòng VIP cho cặp đôi và khu vực sảnh chờ yên tĩnh. Mọi chi nhánh đều được thiết kế cách âm tốt đảm bảo sự tĩnh lặng tuyệt đối.",
+      "question_en": "Is An Spa Retreat exclusively for men?",
+      "answer_en": "An Spa Retreat specializes in treatments, acupressure intensities, and skincare techniques optimized for men's body structures and skin. However, we do welcome couples and female guests in our couple rooms at all branches."
+    },
+    {
+      "id": 2,
+      "question_vi": "Giá dịch vụ đã bao gồm tiền Tip chưa?",
+      "answer_vi": "Giá niêm yết trên menu là giá trọn gói. An Spa cam kết KHÔNG có phí ẩn và KHÔNG nhận tiền Tip dưới mọi hình thức, giúp quý khách hoàn toàn thoải mái thư giãn.",
+      "question_en": "What is the price range and are there any extra fees?",
+      "answer_en": "Our prices range from 400,000 VND for a 30-minute session to 900,000 VND for premium deep tissue therapies. There are absolutely no hidden fees, surcharge taxes, or mandatory tips. You pay exactly the price listed on the menu."
+    },
+    {
+      "id": 3,
+      "question_vi": "Tôi có cần đặt lịch trước khi đến không?",
+      "answer_vi": "Để tránh phải chờ đợi (đặc biệt vào cuối tuần), chúng tôi khuyến khích quý khách nên đặt lịch trước ít nhất 1-2 tiếng để được chuẩn bị phòng và sắp xếp kỹ thuật viên tốt nhất.",
+      "question_en": "Do I need to book an appointment in advance?",
+      "answer_en": "While we accept walk-in clients if slots are available, we highly recommend booking at least 1-2 hours in advance (especially for weekends) to secure your preferred slot, branch, and therapist preference."
+    },
+    {
+      "id": 4,
+      "question_vi": "Spa có phòng xông hơi và bồn ngâm chân không?",
+      "answer_vi": "Có. Chi nhánh Nguyễn Thị Minh Khai có tích hợp phòng xông hơi ướt & xông hơi thảo dược. Các bài massage body tại mọi cơ sở đều bắt đầu bằng ngâm chân thảo dược nóng giải độc.",
+      "question_en": "Do you have private rooms and saunas?",
+      "answer_en": "Yes. We have private treatment rooms for individuals, couple rooms, and premium lounges. Our Nguyen Thi Minh Khai branch also features a luxury herbal sauna & steam room which you can use before or after your therapy."
+    },
+    {
+      "id": 5,
+      "question_vi": "Nhân viên spa có nói tiếng Anh không?",
+      "answer_vi": "Có. Đội ngũ tiếp tân và kỹ thuật viên của chúng tôi đều giao tiếp tiếng Anh tốt, phục vụ chu đáo cho cả các khách hàng nước ngoài và chuyên gia quốc tế.",
+      "question_en": "Can the therapists speak English?",
+      "answer_en": "Yes. Our front-desk receptionists and therapists can communicate effectively in English. We ensure all international guests feel fully comfortable expressing their needs and pressure preferences."
+    }
+  ]
 }

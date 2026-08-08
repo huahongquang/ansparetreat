@@ -130,6 +130,7 @@ function updateLanguageUI() {
 
     renderServices();
     renderArticles();
+    renderFAQs(); // Dynamic FAQ Loader
 
     // Update select option placeholders and input values
     const serviceSelect = document.getElementById("booking-service");
@@ -604,29 +605,60 @@ startReviewTimer();
 
 
 // ==========================================================================
-// FAQs Accordions
+// FAQs Accordions (Dynamic List & Event Handlers)
 // ==========================================================================
 
-const faqQuestions = document.querySelectorAll(".faq-question");
+function renderFAQs() {
+    const container = document.getElementById("faq-accordion-container");
+    if (!container) return;
+    container.innerHTML = "";
 
-faqQuestions.forEach(q => {
-    q.addEventListener("click", () => {
-        const item = q.parentElement;
-        const answer = item.querySelector(".faq-answer");
-        const isActive = item.classList.contains("active");
+    const faqList = (typeof data !== "undefined" && data ? data.faqs : null) || (typeof initialData !== "undefined" && initialData ? initialData.faqs : null) || [];
+    
+    faqList.forEach(faq => {
+        const item = document.createElement("div");
+        item.className = "faq-item";
         
-        // Close all other items first
-        document.querySelectorAll(".faq-item").forEach(fi => {
-            fi.classList.remove("active");
-            fi.querySelector(".faq-answer").style.maxHeight = null;
-        });
+        const question = currentLang === "en" ? faq.question_en : faq.question_vi;
+        const answer = currentLang === "en" ? faq.answer_en : faq.answer_vi;
         
-        if (!isActive) {
-            item.classList.add("active");
-            answer.style.maxHeight = answer.scrollHeight + "px";
-        }
+        item.innerHTML = `
+            <button class="faq-question">
+                <span>${question}</span>
+                <i data-lucide="plus" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+                <p>${answer}</p>
+            </div>
+        `;
+        container.appendChild(item);
     });
-});
+
+    initFAQAccordion();
+    safeCreateIcons();
+}
+
+function initFAQAccordion() {
+    document.querySelectorAll(".faq-question").forEach(q => {
+        q.addEventListener("click", () => {
+            const item = q.parentElement;
+            const answer = item.querySelector(".faq-answer");
+            const isActive = item.classList.contains("active");
+            
+            // Close all other items first
+            document.querySelectorAll(".faq-item").forEach(fi => {
+                fi.classList.remove("active");
+                const ans = fi.querySelector(".faq-answer");
+                if (ans) ans.style.maxHeight = null;
+            });
+            
+            if (!isActive) {
+                item.classList.add("active");
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+}
 
 
 // ==========================================================================

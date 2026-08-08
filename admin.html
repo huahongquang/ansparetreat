@@ -758,6 +758,9 @@
             <li class="menu-item" data-tab="articles">
                 <button><i data-lucide="book-open"></i> Bài Viết / Blog Posts</button>
             </li>
+            <li class="menu-item" data-tab="faq">
+                <button><i data-lucide="help-circle"></i> Câu Hỏi Thường Gặp / FAQs</button>
+            </li>
             <li class="menu-item" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; display: flex; flex-direction: column; align-items: stretch; padding-left: 20px; padding-right: 20px;">
                 <label style="font-size: 9px; text-transform: uppercase; color: var(--text-gray); margin-bottom: 6px; letter-spacing: 1px; display: block; text-align: left;">GitHub Token (Vercel Auto-Save)</label>
                 <div style="display: flex; gap: 6px;">
@@ -810,6 +813,13 @@
                         <div>
                             <div class="stat-value" id="stat-articles-count">0</div>
                             <div class="stat-name">Blog Posts / Articles</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="help-circle"></i></div>
+                        <div>
+                            <div class="stat-value" id="stat-faq-count">0</div>
+                            <div class="stat-name">FAQs / Câu Hỏi</div>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -1073,6 +1083,30 @@
                     <!-- Dynamic blog posts list -->
                 </div>
             </section>
+
+            <!-- 6. FAQ CRUD PANEL -->
+            <section class="panel" id="panel-faq">
+                <div style="margin-bottom: 24px; display: flex; justify-content: flex-end;">
+                    <button class="btn-save-all" style="padding: 8px 16px; font-size: 13px;" onclick="openNewFAQModal()">
+                        <i data-lucide="plus"></i> Thêm Câu Hỏi Mới / Add FAQ
+                    </button>
+                </div>
+                <div class="admin-table-wrapper" style="background:#ffffff; border:1px solid var(--border-soft); border-radius:4px; overflow-x:auto;">
+                    <table class="admin-table" style="width:100%; border-collapse:collapse; text-align:left; font-size: 13.5px;">
+                        <thead>
+                            <tr style="background:#faf9f6; border-bottom:1px solid var(--border-soft); font-size:11px; text-transform:uppercase; color:var(--text-gray); font-weight: 600;">
+                                <th style="padding:16px 20px;">ID</th>
+                                <th style="padding:16px 20px; width:45%;">Tiếng Việt (VI)</th>
+                                <th style="padding:16px 20px; width:45%;">English (EN)</th>
+                                <th style="padding:16px 20px; text-align:right; width:10%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-faq-list">
+                            <!-- Dynamic FAQ table rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -1261,6 +1295,43 @@
         </div>
     </div>
 
+    <!-- FAQ CRUD MODAL -->
+    <div class="modal" id="faq-modal">
+        <div class="modal-dialog" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="faq-modal-title">Thêm/Sửa Câu Hỏi Thường Gặp</h3>
+                <button class="modal-close" onclick="closeFAQModal()"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto; text-align: left;">
+                <input type="hidden" id="faq-id-field">
+                
+                <h4 class="form-section-title">Tiếng Việt (VI)</h4>
+                <div class="input-group">
+                    <label class="input-label">Câu hỏi (VI) *</label>
+                    <input type="text" id="faq-question-vi" class="form-control" placeholder="Ví dụ: An Spa Retreat có phòng riêng không?" required>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Trả lời (VI) *</label>
+                    <textarea id="faq-answer-vi" class="form-control" style="height: 80px;" placeholder="Ví dụ: Có. Chúng tôi có các phòng trị liệu riêng biệt..." required></textarea>
+                </div>
+                
+                <h4 class="form-section-title" style="margin-top: 20px;">English (EN)</h4>
+                <div class="input-group">
+                    <label class="input-label">Question (EN) *</label>
+                    <input type="text" id="faq-question-en" class="form-control" placeholder="e.g., Do you have private rooms?" required>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Answer (EN) *</label>
+                    <textarea id="faq-answer-en" class="form-control" style="height: 80px;" placeholder="e.g., Yes, we have private treatment suites..." required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="padding: 20px 0 0 0; border-top: none;">
+                <button type="button" class="btn-modal btn-modal-cancel" onclick="closeFAQModal()">Hủy Bỏ</button>
+                <button type="button" class="btn-modal btn-modal-submit" onclick="submitFAQForm()">Lưu Cập Nhật</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notifications Container -->
     <div class="toast-container" id="toast-container"></div>
 
@@ -1372,6 +1443,7 @@
             renderOverview();
             renderServicesList();
             renderArticlesList();
+            renderFAQList();
             populateContentForm();
             renderMediaGrid();
             populateImageSelectors();
@@ -1383,6 +1455,8 @@
             document.getElementById('stat-media-count').innerText = mediaFiles.length;
             const artCount = document.getElementById('stat-articles-count');
             if (artCount) artCount.innerText = (data.articles || []).length;
+            const faqCount = document.getElementById('stat-faq-count');
+            if (faqCount) faqCount.innerText = (data.faqs || []).length;
         }
 
         // Services list builder
@@ -2147,6 +2221,129 @@
                 const loginGithubInput = document.getElementById("login-github-token");
                 if (loginGithubInput) loginGithubInput.value = "";
                 showToast("Đã gỡ bỏ GitHub Token!", "info");
+            }
+        };
+
+        // Render FAQ CRUD table rows
+        function renderFAQList() {
+            const tbody = document.getElementById("admin-faq-list");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            
+            const faqList = data.faqs || [];
+            faqList.forEach(faq => {
+                const row = document.createElement("tr");
+                row.style.borderBottom = "1px solid var(--border-soft)";
+                row.innerHTML = `
+                    <td style="padding:16px 20px; font-weight:600; vertical-align:top;">${faq.id}</td>
+                    <td style="padding:16px 20px; vertical-align:top;">
+                        <strong>${faq.question_vi}</strong>
+                        <p style="font-size:12px; color:var(--text-gray); margin-top:4px;">${faq.answer_vi}</p>
+                    </td>
+                    <td style="padding:16px 20px; vertical-align:top;">
+                        <strong>${faq.question_en}</strong>
+                        <p style="font-size:12px; color:var(--text-gray); margin-top:4px;">${faq.answer_en}</p>
+                    </td>
+                    <td style="padding:16px 20px; text-align:right; white-space:nowrap; vertical-align:top;">
+                        <button class="btn btn-sm" style="padding:4px 8px; font-size:11px; margin-right:6px; background:var(--accent-gold); color:white; border:none; border-radius:4px; cursor:pointer;" onclick="openEditFAQModal(${faq.id})">Sửa</button>
+                        <button class="btn btn-sm btn-delete" style="padding:4px 8px; font-size:11px; background:#ef4444; color:white; border:none; border-radius:4px; cursor:pointer;" onclick="deleteFAQ(${faq.id})">Xóa</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            safeCreateIcons();
+        }
+
+        // Open FAQ modal for adding new FAQ
+        window.openNewFAQModal = function() {
+            document.getElementById("faq-modal-title").innerText = "Thêm Câu Hỏi Thường Gặp Mới";
+            document.getElementById("faq-id-field").value = "";
+            document.getElementById("faq-question-vi").value = "";
+            document.getElementById("faq-answer-vi").value = "";
+            document.getElementById("faq-question-en").value = "";
+            document.getElementById("faq-answer-en").value = "";
+            
+            document.getElementById("faq-modal").classList.add("active");
+        };
+
+        // Open FAQ modal for editing existing FAQ
+        window.openEditFAQModal = function(id) {
+            const faqList = data.faqs || [];
+            const faq = faqList.find(f => f.id === id);
+            if (!faq) return;
+            
+            document.getElementById("faq-modal-title").innerText = "Sửa Câu Hỏi Thường Gặp";
+            document.getElementById("faq-id-field").value = faq.id;
+            document.getElementById("faq-question-vi").value = faq.question_vi;
+            document.getElementById("faq-answer-vi").value = faq.answer_vi;
+            document.getElementById("faq-question-en").value = faq.question_en;
+            document.getElementById("faq-answer-en").value = faq.answer_en;
+            
+            document.getElementById("faq-modal").classList.add("active");
+        };
+
+        // Close FAQ modal
+        window.closeFAQModal = function() {
+            document.getElementById("faq-modal").classList.remove("active");
+        };
+
+        // Submit FAQ form (Add/Edit)
+        window.submitFAQForm = function() {
+            const idVal = document.getElementById("faq-id-field").value;
+            const questionVi = document.getElementById("faq-question-vi").value.trim();
+            const answerVi = document.getElementById("faq-answer-vi").value.trim();
+            const questionEn = document.getElementById("faq-question-en").value.trim();
+            const answerEn = document.getElementById("faq-answer-en").value.trim();
+            
+            if (!questionVi || !answerVi || !questionEn || !answerEn) {
+                showToast("Vui lòng nhập đầy đủ câu hỏi và trả lời bằng cả 2 ngôn ngữ!", "error");
+                return;
+            }
+            
+            if (!data.faqs) data.faqs = [];
+            
+            if (idVal) {
+                // Edit existing FAQ
+                const id = parseInt(idVal);
+                const idx = data.faqs.findIndex(f => f.id === id);
+                if (idx !== -1) {
+                    data.faqs[idx] = {
+                        id: id,
+                        question_vi: questionVi,
+                        answer_vi: answerVi,
+                        question_en: questionEn,
+                        answer_en: answerEn
+                    };
+                    showToast("Đã cập nhật câu hỏi thành công!", "success");
+                }
+            } else {
+                // Create new FAQ
+                const nextId = data.faqs.length > 0 ? Math.max(...data.faqs.map(f => f.id)) + 1 : 1;
+                data.faqs.push({
+                    id: nextId,
+                    question_vi: questionVi,
+                    answer_vi: answerVi,
+                    question_en: questionEn,
+                    answer_en: answerEn
+                });
+                showToast("Đã thêm câu hỏi thường gặp mới!", "success");
+            }
+            
+            closeFAQModal();
+            renderFAQList();
+            renderOverview();
+        };
+
+        // Delete FAQ
+        window.deleteFAQ = function(id) {
+            if (!confirm("Bạn có chắc chắn muốn xóa câu hỏi này?")) return;
+            
+            const idx = data.faqs.findIndex(f => f.id === id);
+            if (idx !== -1) {
+                data.faqs.splice(idx, 1);
+                showToast("Đã xóa câu hỏi thường gặp thành công!", "success");
+                renderFAQList();
+                renderOverview();
             }
         };
 

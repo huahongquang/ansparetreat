@@ -762,15 +762,18 @@ if (bookingForm) {
         // Extract form data
         const name = document.getElementById("booking-name").value;
         const phone = document.getElementById("booking-phone").value;
-        const serviceId = parseInt(serviceSelect.value) || 0;
+        const serviceNameEn = serviceSelect.value;
         const duration = document.getElementById("booking-duration").value;
         const branch = branchSelect.value;
         const date = dateInput.value;
         const time = document.getElementById("booking-time").value;
         
-        // Get service title for display
-        const serviceObj = (initialData.services || []).find(s => s.id === serviceId);
-        const serviceTitle = serviceObj ? (currentLang === 'en' ? serviceObj.title_en : serviceObj.title_vi) : "Dịch vụ";
+        // Find matching service from database to get ID, Title and Price
+        const serviceObj = (initialData.services || []).find(s => s.title_en === serviceNameEn);
+        const serviceId = serviceObj ? serviceObj.id : 0;
+        const serviceTitle = serviceObj ? (currentLang === 'en' ? serviceObj.title_en : serviceObj.title_vi) : serviceNameEn;
+        const servicePriceStr = serviceObj ? serviceObj.price : "0";
+        const servicePrice = parseInt(servicePriceStr.replace(/[^0-9]/g, "")) || 0;
         
         // Fill in success modal values
         document.getElementById("summary-service-text").innerText = `${serviceTitle} (${duration})`;
@@ -781,6 +784,8 @@ if (bookingForm) {
             customer_name: name,
             customer_phone: phone,
             service_id: serviceId,
+            service_title: serviceObj ? serviceObj.title_vi : serviceNameEn,
+            price: servicePrice,
             date: date,
             time: time
         };
@@ -823,19 +828,13 @@ function saveBookingToLocalFallback(booking) {
     // Add id
     const nextId = localBookings.length > 0 ? Math.max(...localBookings.map(b => b.id)) + 1000 : 1000;
     
-    // Fetch service title and price from initialData
-    const serviceObj = (initialData.services || []).find(s => s.id === booking.service_id);
-    const serviceTitle = serviceObj ? serviceObj.title_vi : "Dịch vụ đã chọn";
-    const servicePriceStr = serviceObj ? serviceObj.price : "0";
-    const servicePrice = parseInt(servicePriceStr.replace(/[^0-9]/g, "")) || 0;
-    
     localBookings.push({
         id: nextId,
         customer_name: booking.customer_name,
         customer_phone: booking.customer_phone,
         service_id: booking.service_id,
-        service_title: serviceTitle,
-        price: servicePrice,
+        service_title: booking.service_title,
+        price: booking.price,
         date: booking.date,
         time: booking.time,
         assigned_staff_id: null,

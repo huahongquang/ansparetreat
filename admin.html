@@ -1643,7 +1643,7 @@
             // Static fallback (e.g. on Vercel)
             if (!loadedSuccessfully) {
                 try {
-                    const res = await fetch('/data.json');
+                    const res = await fetch('/data.json?v=' + new Date().getTime());
                     if (res.ok) {
                         data = await res.json();
                         loadedSuccessfully = true;

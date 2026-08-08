@@ -157,7 +157,8 @@
       "journal_tag": "SANCTUARY JOURNAL",
       "journal_title": "Grooming & Wellness Insights",
       "journal_desc": "Read professional skincare, muscle recovery, and lifestyle tips tailored for modern gentlemen.",
-      "nav_login": "Login"
+      "nav_login": "Login",
+      "btn_details": "Details"
     },
     "vi": {
       "nav_about": "Về An Spa",
@@ -316,7 +317,8 @@
       "journal_tag": "NHẬT KÝ SỨC KHỎE",
       "journal_title": "Kiến Thức Trị Liệu & Chăm Sóc Nam Giới",
       "journal_desc": "Chia sẻ các bí quyết chuyên sâu về chăm sóc da mặt, giải mỏi cơ bắp và lối sống lành mạnh từ chuyên gia.",
-      "nav_login": "Đăng Nhập"
+      "nav_login": "Đăng Nhập",
+      "btn_details": "Chi Tiết"
     }
   },
   "services": [
@@ -334,7 +336,19 @@
       "title_en": "Relaxing Skin Care",
       "title_vi": "Chăm Sóc Da Mặt Thư Giãn",
       "desc_en": "A gentle facial treatment tailored to cleanse, hydrate, and refresh male skin, removing signs of daily fatigue under soft, relaxing lighting.",
-      "desc_vi": "Liệu trình chăm sóc da mặt nhẹ nhàng giúp làm sạch, cấp ẩm và mang lại vẻ tươi trẻ cho làn da nam giới, loại bỏ mệt mỏi hàng ngày."
+      "desc_vi": "Liệu trình chăm sóc da mặt nhẹ nhàng giúp làm sạch, cấp ẩm và mang lại vẻ tươi trẻ cho làn da nam giới, loại bỏ mệt mỏi hàng ngày.",
+      "steps_vi": [
+        "Bước 1: Rửa mặt làm sạch sâu bằng sữa rửa mặt gỗ tuyết tùng dịu nhẹ kết hợp khăn nóng.",
+        "Bước 2: Tẩy tế bào chết nhẹ nhàng lấy đi bã nhờn, làm thông thoáng lỗ chân lông.",
+        "Bước 3: Massage bấm huyệt mặt thư giãn kích thích tuần hoàn máu và nâng cơ mặt.",
+        "Bước 4: Đắp mặt nạ lô hội cấp ẩm, dịu da và thoa kem dưỡng bảo vệ da."
+      ],
+      "steps_en": [
+        "Step 1: Deep cleanse using mild cedarwood foaming wash and a hot towel prep.",
+        "Step 2: Gentle exfoliation to lift dead skin cells and clear clogged pores.",
+        "Step 3: Relaxing facial massage and acupressure to boost blood circulation.",
+        "Step 4: Cooling aloe vera mask application followed by a soothing daily moisturizer."
+      ]
     },
     {
       "id": 2,
@@ -350,7 +364,21 @@
       "title_en": "Intensive Skin Care",
       "title_vi": "Chăm Sóc Da Mặt Chuyên Sâu",
       "desc_en": "Deep facial cleansing, sebum extraction, intensive hydration, and facial acupressure designed for complete skin revitalization.",
-      "desc_vi": "Làm sạch sâu da mặt, hút bã nhờn, cấp ẩm chuyên sâu và ấn huyệt cơ mặt giúp trẻ hóa da toàn diện."
+      "desc_vi": "Làm sạch sâu da mặt, hút bã nhờn, cấp ẩm chuyên sâu và ấn huyệt cơ mặt giúp trẻ hóa da toàn diện.",
+      "steps_vi": [
+        "Bước 1: Tẩy trang, xông hơi nóng làm giãn nở lỗ chân lông và hút sạch mụn cám, bã nhờn.",
+        "Bước 2: Rửa mặt sạch sâu bằng bọt tuyết tùng và tẩy da chết chuyên sâu thảo mộc.",
+        "Bước 3: Hút mụn cám và bã nhờn cứng đầu bằng máy hút chân không y khoa.",
+        "Bước 4: Massage thư giãn cơ mặt và đắp mặt nạ đất sét xanh đào thải độc tố cơ mặt.",
+        "Bước 5: Đi búa lạnh se khít lỗ chân lông, thoa serum đặc trị phục hồi nam giới."
+      ],
+      "steps_en": [
+        "Step 1: Makeup removal, warm steam to open pores, and oil zone prep.",
+        "Step 2: Deep cleanse with cedarwood foam and intensive herbal scrub.",
+        "Step 3: Vacuum suction to extract stubborn blackheads and excess sebum.",
+        "Step 4: Facial contour massage followed by detoxifying green clay mask.",
+        "Step 5: Ice-hammer cooling therapy to shrink pores and application of recovery serum."
+      ]
     },
     {
       "id": 3,
@@ -365,7 +393,19 @@
       "title_en": "Bikini Trim",
       "title_vi": "Tỉa Bikini",
       "desc_en": "Neat, professional, and hygienic grooming trim tailored for modern gentlemen's comfort and hygiene.",
-      "desc_vi": "Cắt tỉa gọn gàng, vệ sinh và thẩm mỹ được thiết kế riêng đảm bảo sự tự tin, sạch sẽ cho phái mạnh."
+      "desc_vi": "Cắt tỉa gọn gàng, vệ sinh và thẩm mỹ được thiết kế riêng đảm bảo sự tự tin, sạch sẽ cho phái mạnh.",
+      "steps_vi": [
+        "Bước 1: Vệ sinh sát khuẩn sạch sẽ vùng da nhạy cảm cần xử lý.",
+        "Bước 2: Tư vấn kiểu dáng và thực hiện cắt tỉa gọn gàng bằng tông đơ chuyên dụng chuyên nghiệp.",
+        "Bước 3: Cạo viền sắc nét, thoa phấn làm dịu da.",
+        "Bước 4: Thoa gel phục hồi làm dịu da nhạy cảm kháng viêm."
+      ],
+      "steps_en": [
+        "Step 1: Sanitize and cleanse the target sensitive skin area.",
+        "Step 2: Consult on length preference and perform precise trimming with professional trimmers.",
+        "Step 3: Clean edges shaving and cooling powder application.",
+        "Step 4: Soothing recovery gel application to prevent skin inflammation and irritation."
+      ]
     },
     {
       "id": 4,
@@ -380,7 +420,19 @@
       "title_en": "Waxing",
       "title_vi": "Wax Lông",
       "desc_en": "Gentle hair removal using premium waxes to ensure smooth, clean skin with minimal discomfort.",
-      "desc_vi": "Triệt lông tạm thời bằng sáp nóng cao cấp giúp làn da sạch khỏe, hạn chế đau rát tối đa."
+      "desc_vi": "Triệt lông tạm thời bằng sáp nóng cao cấp giúp làn da sạch khỏe, hạn chế đau rát tối đa.",
+      "steps_vi": [
+        "Bước 1: Sát khuẩn và làm sạch vùng da cần tẩy lông.",
+        "Bước 2: Thoa sáp ấm thảo mộc thiên nhiên mỏng đều lên bề mặt da.",
+        "Bước 3: Thực hiện giật sáp dứt khoát nhanh chóng, loại bỏ tận gốc chân lông.",
+        "Bước 4: Dọn sạch sáp thừa và thoa mỡ trăn/kem dưỡng ức chế mọc lông, làm dịu da."
+      ],
+      "steps_en": [
+        "Step 1: Disinfect and cleanse the hair removal target area.",
+        "Step 2: Apply a thin layer of natural warm organic wax.",
+        "Step 3: Perform quick, professional wax strips removal to extract hair from the roots.",
+        "Step 4: Clean wax residues and apply hair inhibitor lotion and soothing repair cream."
+      ]
     },
     {
       "id": 5,
@@ -395,7 +447,19 @@
       "title_en": "Hair Removal - IPL",
       "title_vi": "Triệt Lông - Công Nghệ IPL",
       "desc_en": "Long-term hair removal using state-of-the-art IPL Cooling Technology to ensure a painless, clean, and cool experience.",
-      "desc_vi": "Triệt lông vĩnh viễn sử dụng công nghệ ánh sáng IPL Cooling hiện đại không gây đau đớn, mang lại cảm giác mát lạnh dễ chịu."
+      "desc_vi": "Triệt lông vĩnh viễn sử dụng công nghệ ánh sáng IPL Cooling hiện đại không gây đau đớn, mang lại cảm giác mát lạnh dễ chịu.",
+      "steps_vi": [
+        "Bước 1: Làm sạch vùng da triệt và cạo ngắn bớt sợi lông dài.",
+        "Bước 2: Thoa gel triệt lạnh bảo vệ bề mặt da tối đa.",
+        "Bước 3: Bắn xung laser ánh sáng IPL thế hệ mới nhắm vào nang lông ức chế mọc lông.",
+        "Bước 4: Lau sạch gel, thoa kem làm dịu da cấp ẩm phục hồi."
+      ],
+      "steps_en": [
+        "Step 1: Cleanse the target skin and shave down long hairs.",
+        "Step 2: Apply ice-cold protection gel on the skin surface.",
+        "Step 3: Deliver high-tech IPL light pulses targeting hair follicles to inhibit regrowth.",
+        "Step 4: Clean gel and apply moisturizing recovery cream."
+      ]
     },
     {
       "id": 6,
@@ -411,7 +475,19 @@
       "title_en": "Full Body Scrub",
       "title_vi": "Tẩy Tế Bào Chết Toàn Thân",
       "desc_en": "Gentle full-body exfoliation using natural salts and herbal extracts to remove dead cells and brighten male skin.",
-      "desc_vi": "Tẩy tế bào chết toàn thân bằng muối khoáng và thảo mộc tự nhiên giúp thông thoáng lỗ chân lông, làm sáng da nam giới."
+      "desc_vi": "Tẩy tế bào chết toàn thân bằng muối khoáng và thảo mộc tự nhiên giúp thông thoáng lỗ chân lông, làm sáng da nam giới.",
+      "steps_vi": [
+        "Bước 1: Ngâm chân thảo mộc khử mùi muối gừng nóng ấm.",
+        "Bước 2: Tắm tráng bằng nước ấm vệ sinh cơ thể sạch sẽ.",
+        "Bước 3: Massage tẩy tế bào chết toàn thân bằng hỗn hợp bột cà phê sữa dừa/muối hồng hữu cơ.",
+        "Bước 4: Tắm sạch tế bào chết bằng nước ấm và thoa kem dưỡng thể giữ ẩm mềm mịn da."
+      ],
+      "steps_en": [
+        "Step 1: Lemongrass ginger warm foot soak and sanitize.",
+        "Step 2: Warm shower to prep and cleanse the skin.",
+        "Step 3: Full body scrub using organic coconut coffee or pink salt mixture.",
+        "Step 4: Warm shower rinse and full body application of hydrating body milk."
+      ]
     },
     {
       "id": 7,
@@ -427,7 +503,19 @@
       "title_en": "Full Body Oil Massage (60')",
       "title_vi": "Massage Dầu Toàn Thân (60')",
       "desc_en": "A relaxing full-body massage using warm essential oils to melt away daily muscle tension and mental stress.",
-      "desc_vi": "Massage toàn thân thư giãn kết hợp tinh dầu ấm giúp giải tỏa căng thẳng thần kinh và làm dịu các bó cơ mệt mỏi."
+      "desc_vi": "Massage toàn thân thư giãn kết hợp tinh dầu ấm giúp giải tỏa căng thẳng thần kinh và làm dịu các bó cơ mệt mỏi.",
+      "steps_vi": [
+        "Bước 1: Ngâm chân muối gừng sả nóng ấm giúp thông kinh lạc.",
+        "Bước 2: Thực hiện ấn huyệt khô khởi động làm ấm cơ thể.",
+        "Bước 3: Massage vuốt dầu Thụy Điển/trị liệu giải mỏi cơ chuyên sâu lưng, vai, gáy và chân.",
+        "Bước 4: Lau sạch dầu thừa bằng khăn ấm nóng, uống trà sâm bồi bổ sức khỏe."
+      ],
+      "steps_en": [
+        "Step 1: Ginger lemongrass warm foot bath to relax energy channels.",
+        "Step 2: Dry acupressure startup sequence to warm up muscles.",
+        "Step 3: Swedish or deep tissue oil massage targeting back, neck, shoulders, and legs.",
+        "Step 4: Warm towel body clean and complimentary hot herbal ginseng tea."
+      ]
     },
     {
       "id": 8,
@@ -444,7 +532,19 @@
       "title_en": "Full Body Oil Massage (90')",
       "title_vi": "Massage Dầu Toàn Thân (90')",
       "desc_en": "An extended 90-minute warm oil treatment that deeply works on key muscle zones, bringing a profound sense of light and ease.",
-      "desc_vi": "Liệu trình 90 phút xoa bóp tinh dầu chuyên sâu giúp giải phóng hoàn toàn các điểm đau nhức trên cơ thể."
+      "desc_vi": "Liệu trình 90 phút xoa bóp tinh dầu chuyên sâu giúp giải phóng hoàn toàn các điểm đau nhức trên cơ thể.",
+      "steps_vi": [
+        "Bước 1: Ngâm chân muối gừng sả nóng ấm giúp thông kinh lạc.",
+        "Bước 2: Thực hiện ấn huyệt khô khởi động làm ấm cơ thể.",
+        "Bước 3: Massage vuốt dầu Thụy Điển/trị liệu giải mỏi cơ chuyên sâu lưng, vai, gáy và chân.",
+        "Bước 4: Lau sạch dầu thừa bằng khăn ấm nóng, uống trà sâm bồi bổ sức khỏe."
+      ],
+      "steps_en": [
+        "Step 1: Ginger lemongrass warm foot bath to relax energy channels.",
+        "Step 2: Dry acupressure startup sequence to warm up muscles.",
+        "Step 3: Swedish or deep tissue oil massage targeting back, neck, shoulders, and legs.",
+        "Step 4: Warm towel body clean and complimentary hot herbal ginseng tea."
+      ]
     },
     {
       "id": 9,
@@ -461,7 +561,21 @@
       "title_en": "Full Body Oil - Hot Stone Massage",
       "title_vi": "Massage Dầu - Kết Hợp Đá Nóng",
       "desc_en": "Combining warm oil massage with hot basalt stones to trigger deep relaxation, release meridians, and alleviate chronic back stiffness.",
-      "desc_vi": "Massage tinh dầu kết hợp chườm đá nóng Basalt giúp thải độc tố, đả thông kinh mạch vùng lưng."
+      "desc_vi": "Massage tinh dầu kết hợp chườm đá nóng Basalt giúp thải độc tố, đả thông kinh mạch vùng lưng.",
+      "steps_vi": [
+        "Bước 1: Ngâm chân thảo mộc ấm nóng kích thích lưu thông máu chân.",
+        "Bước 2: Bấm huyệt khô toàn thân khởi động giảm căng cơ.",
+        "Bước 3: Massage vuốt dầu nóng và chườm xếp đá nóng bazan tự nhiên lên các dọc sống lưng giải độc.",
+        "Bước 4: Đi đá nóng sưởi ấm chuyên sâu các huyệt đạo mỏi nhức vai gáy.",
+        "Bước 5: Lau khăn ấm nóng toàn thân, phục hồi thể lực bằng trà thảo mộc ấm."
+      ],
+      "steps_en": [
+        "Step 1: Warm herbal foot soak to stimulate blood circulation.",
+        "Step 2: Full body dry acupressure sequence to release muscle tension.",
+        "Step 3: Warm oil massage followed by placing heated natural basalt stones along the spine to detoxify.",
+        "Step 4: Deep heat stones gliding over neck, shoulders, and aching trigger points.",
+        "Step 5: Warm towel wipe and hot herbal tea to restore stamina."
+      ]
     },
     {
       "id": 10,
@@ -477,7 +591,19 @@
       "title_en": "Full Body Oil Massage - Body Scrub",
       "title_vi": "Massage Dầu - Tẩy Tế Bào Chết",
       "desc_en": "Dual-benefit package: deep-cleansing body exfoliation followed by a soothing warm oil massage to relax muscles and nourish skin.",
-      "desc_vi": "Combo kép tiện lợi: Tẩy tế bào chết toàn thân làm mịn da tiếp nối bằng bài massage dầu thư giãn toàn diện."
+      "desc_vi": "Combo kép tiện lợi: Tẩy tế bào chết toàn thân làm mịn da tiếp nối bằng bài massage dầu thư giãn toàn diện.",
+      "steps_vi": [
+        "Bước 1: Ngâm chân muối gừng sả nóng ấm giúp thông kinh lạc.",
+        "Bước 2: Thực hiện ấn huyệt khô khởi động làm ấm cơ thể.",
+        "Bước 3: Massage vuốt dầu Thụy Điển/trị liệu giải mỏi cơ chuyên sâu lưng, vai, gáy và chân.",
+        "Bước 4: Lau sạch dầu thừa bằng khăn ấm nóng, uống trà sâm bồi bổ sức khỏe."
+      ],
+      "steps_en": [
+        "Step 1: Ginger lemongrass warm foot bath to relax energy channels.",
+        "Step 2: Dry acupressure startup sequence to warm up muscles.",
+        "Step 3: Swedish or deep tissue oil massage targeting back, neck, shoulders, and legs.",
+        "Step 4: Warm towel body clean and complimentary hot herbal ginseng tea."
+      ]
     },
     {
       "id": 11,
@@ -493,7 +619,19 @@
       "title_en": "Stretching / Deep Tissue Massage (60')",
       "title_vi": "Massage Chuyên Sâu / Giãn Cơ (60 Phút)",
       "desc_en": "A firm, high-intensity therapeutic treatment combining deep muscle work and active stretching to relieve severe back-shoulder tension.",
-      "desc_vi": "Bài massage lực đầm kết hợp các động tác kéo giãn cơ chuyên sâu giúp xoa dịu đau vai gáy cấp tính."
+      "desc_vi": "Bài massage lực đầm kết hợp các động tác kéo giãn cơ chuyên sâu giúp xoa dịu đau vai gáy cấp tính.",
+      "steps_vi": [
+        "Bước 1: Ngâm chân muối gừng sả khai thông huyệt đạo gan bàn chân.",
+        "Bước 2: Trị liệu giãn cơ thể thao bấm huyệt chuyên sâu toàn thân không dùng dầu.",
+        "Bước 3: Tập trung kéo giãn các vùng cơ lớn bị bó cứng (lưng, đùi sau, khớp vai) cho gymer/vận động viên.",
+        "Bước 4: Lau khăn nóng ấm thư giãn cột sống lưng, phục hồi bằng trà sâm gừng ấm."
+      ],
+      "steps_en": [
+        "Step 1: Lemongrass ginger hot foot bath to unlock foot sole meridians.",
+        "Step 2: Professional oil-free dry sport stretching and deep tissue trigger point acupressure.",
+        "Step 3: Focus on releasing tight major muscle groups (lower back, hamstrings, rotator cuffs) for gymers/athletes.",
+        "Step 4: Hot towel application to relax the spine and warm ginseng ginger tea recovery."
+      ]
     },
     {
       "id": 12,
@@ -509,7 +647,19 @@
       "title_en": "Stretching / Deep Tissue Massage (90')",
       "title_vi": "Massage Chuyên Sâu / Giãn Cơ (90 Phút)",
       "desc_en": "The ultimate 90-minute muscle reset. Intensive bodywork and passive stretching focused on recovery from sports and heavy workouts.",
-      "desc_vi": "Liệu pháp phục hồi cơ bắp đỉnh cao 90 phút dành riêng cho người chơi thể thao và vận động nặng."
+      "desc_vi": "Liệu pháp phục hồi cơ bắp đỉnh cao 90 phút dành riêng cho người chơi thể thao và vận động nặng.",
+      "steps_vi": [
+        "Bước 1: Ngâm chân muối gừng sả khai thông huyệt đạo gan bàn chân.",
+        "Bước 2: Trị liệu giãn cơ thể thao bấm huyệt chuyên sâu toàn thân không dùng dầu.",
+        "Bước 3: Tập trung kéo giãn các vùng cơ lớn bị bó cứng (lưng, đùi sau, khớp vai) cho gymer/vận động viên.",
+        "Bước 4: Lau khăn nóng ấm thư giãn cột sống lưng, phục hồi bằng trà sâm gừng ấm."
+      ],
+      "steps_en": [
+        "Step 1: Lemongrass ginger hot foot bath to unlock foot sole meridians.",
+        "Step 2: Professional oil-free dry sport stretching and deep tissue trigger point acupressure.",
+        "Step 3: Focus on releasing tight major muscle groups (lower back, hamstrings, rotator cuffs) for gymers/athletes.",
+        "Step 4: Hot towel application to relax the spine and warm ginseng ginger tea recovery."
+      ]
     }
   ],
   "articles": [

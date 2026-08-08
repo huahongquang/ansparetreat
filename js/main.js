@@ -50,6 +50,16 @@ function bindSelectServiceButtons() {
     });
 }
 
+// Bind "Chi Tiết" details buttons
+function bindViewDetailsButtons() {
+    document.querySelectorAll(".btn-view-details").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = parseInt(btn.getAttribute("data-id"));
+            openServiceDetailsModal(id);
+        });
+    });
+}
+
 // Render services and populate select options dynamically from database
 function renderServices() {
     const servicesGrid = document.getElementById("services-grid");
@@ -76,13 +86,17 @@ function renderServices() {
                             <span class="service-duration"><i data-lucide="clock"></i> ${s.duration}</span>
                             <span class="service-price">${s.price}</span>
                         </div>
-                        <button class="btn btn-outline btn-select-service" data-service="${s.title_en}" data-t="book_now">Book Now</button>
+                        <div class="service-card-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: auto; width: 100%;">
+                            <button class="btn btn-outline btn-sm btn-view-details" data-id="${s.id}" data-t="btn_details" style="padding: 10px 14px;">Chi Tiết</button>
+                            <button class="btn btn-gold btn-sm btn-select-service" data-service="${s.title_en}" data-t="book_now" style="padding: 10px 14px;">Book Now</button>
+                        </div>
                     </div>
                 </div>
             `;
             servicesGrid.insertAdjacentHTML("beforeend", cardHtml);
         });
         bindSelectServiceButtons();
+        bindViewDetailsButtons();
     }
     
     // 2. Populate the booking modal dropdown options
@@ -698,5 +712,103 @@ if (bookingForm) {
             successModal.classList.add("active");
         }
         document.body.style.overflow = "hidden";
+    });
+}
+
+// ==========================================================================
+// Service Details Popup Modal Controller
+// ==========================================================================
+const serviceDetailsModal = document.getElementById("service-details-modal");
+
+function openServiceDetailsModal(id) {
+    const s = (initialData.services || []).find(item => item.id === id);
+    if (!s) return;
+    
+    const title = currentLang === 'en' ? s.title_en : s.title_vi;
+    const desc = currentLang === 'en' ? s.desc_en : s.desc_vi;
+    const steps = currentLang === 'en' ? (s.steps_en || []) : (s.steps_vi || []);
+    
+    document.getElementById("detail-modal-title").innerText = title;
+    document.getElementById("detail-modal-desc").innerText = desc;
+    document.getElementById("detail-modal-image").src = s.image;
+    document.getElementById("detail-modal-image").alt = title;
+    
+    const categoryMap = {
+        facial: currentLang === 'en' ? "Facial Care" : "Chăm Sóc Da Mặt",
+        body: currentLang === 'en' ? "Body Care" : "Chăm Sóc Toàn Thân"
+    };
+    document.getElementById("detail-modal-category").innerText = categoryMap[s.category] || s.category;
+    document.getElementById("detail-modal-duration").innerText = s.duration;
+    document.getElementById("detail-modal-price").innerText = s.price;
+    
+    // Populate steps list
+    const stepsContainer = document.getElementById("detail-modal-steps");
+    stepsContainer.innerHTML = "";
+    
+    if (steps.length === 0) {
+        stepsContainer.innerHTML = `<div style="color:var(--text-gray); font-style:italic;">Đang cập nhật các bước trải nghiệm / Therapy steps updating...</div>`;
+    } else {
+        steps.forEach(step => {
+            const stepDiv = document.createElement("div");
+            stepDiv.style.display = "flex";
+            stepDiv.style.gap = "12px";
+            stepDiv.style.alignItems = "flex-start";
+            
+            // Extract step number (e.g. "Bước 1:" or "Step 1:") and content
+            const parts = step.split(":");
+            let numPart = "";
+            let textPart = step;
+            if (parts.length > 1) {
+                numPart = parts[0] + ":";
+                textPart = parts.slice(1).join(":").trim();
+            }
+            
+            stepDiv.innerHTML = `
+                <div style="font-weight: 700; color: var(--accent-gold); white-space: nowrap; font-size: 14px;">${numPart}</div>
+                <div style="color: var(--text-dark); font-size: 14px; font-weight: 300; line-height: 1.5;">${textPart}</div>
+            `;
+            stepsContainer.appendChild(stepDiv);
+        });
+    }
+    
+    // Bind book button in details modal
+    const bookBtn = document.getElementById("detail-modal-btn-book");
+    // Remove previous event listeners by cloning
+    const newBookBtn = bookBtn.cloneNode(true);
+    bookBtn.parentNode.replaceChild(newBookBtn, bookBtn);
+    
+    newBookBtn.innerText = currentLang === 'en' ? "Book Now" : "Đặt Lịch Ngay";
+    newBookBtn.addEventListener("click", () => {
+        closeServiceDetailsModal();
+        openBookingModal(s.title_en);
+    });
+    
+    // Open modal
+    if (serviceDetailsModal) {
+        serviceDetailsModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+}
+
+function closeServiceDetailsModal() {
+    if (serviceDetailsModal) {
+        serviceDetailsModal.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+}
+
+// Bind close triggers
+const detailModalClose = document.getElementById("detail-modal-close");
+const detailModalBtnClose = document.getElementById("detail-modal-btn-close");
+
+if (detailModalClose) detailModalClose.addEventListener("click", closeServiceDetailsModal);
+if (detailModalBtnClose) detailModalBtnClose.addEventListener("click", closeServiceDetailsModal);
+
+// Close modal on background click
+if (serviceDetailsModal) {
+    serviceDetailsModal.addEventListener("click", (e) => {
+        if (e.target === serviceDetailsModal) {
+            closeServiceDetailsModal();
+        }
     });
 }

@@ -699,5 +699,14 @@
       "content_en": "<p>Men's skin is structurally different from women's skin: it is roughly 20% thicker, contains more active sebaceous glands, and is prone to irritation from regular shaving. Consequently, male skin requires specialized formulas and a disciplined detox routine to prevent acne, excess sebum, and premature aging.</p><h4>1. Deep Cleansing & Sebum Control</h4><p>Daily exposure to urban pollution combined with active sebum production clogs pores quickly. Using a gentle pH-balanced cleanser containing activated charcoal or cedarwood extract dissolves dirt without stripping the skin's natural moisture barrier.</p><h4>2. Regular Exfoliation</h4><p>Dead skin cells build up and make the complexion look dull. Exfoliating 1-2 times a week with mild natural scrubs helps clear pores, softens hair follicles for smoother shaves, and improves the absorption of subsequent serums and moisturizers.</p><h4>3. Hydration & Rejuvenation</h4><p>Many men make the mistake of avoiding moisturizers due to a fear of feeling greasy. However, dehydrated skin actually produces more oil to compensate. Using a lightweight, non-comedogenic gel-cream locks in hydration, balances oil production, and maintains skin elasticity.</p>",
       "content_vi": "<p>Làn da nam giới có cấu trúc sinh học khác biệt so với nữ giới: dày hơn khoảng 20%, mật độ tuyến bã nhờn hoạt động mạnh hơn và dễ kích ứng do cạo râu thường xuyên. Do đó, phái mạnh cần một quy trình chăm sóc chuyên biệt để kiểm soát dầu thừa, ngừa mụn và làm chậm quá trình lão hóa.</p><h4>1. Làm Sạch Sâu & Kiểm Soát Bã Nhờn</h4><p>Khói bụi đô thị kết hợp với tuyến dầu hoạt động mạnh rất dễ gây bít tắc lỗ chân lông. Sử dụng sữa rửa mặt cân bằng độ pH chiết xuất từ than hoạt tính hoặc gỗ tuyết tùng giúp làm sạch sâu mà không gây khô ráp da.</p><h4>2. Tẩy Tế Bào Chết Định Kỳ</h4><p>Lớp sừng dày tích tụ khiến da xỉn màu và thô ráp. Việc tẩy tế bào chết 1-2 lần mỗi tuần bằng các thành phần tự nhiên dịu nhẹ giúp thông thoáng lỗ chân lông, làm mềm nang lông hỗ trợ cạo râu dễ dàng hơn, đồng thời kích thích tái tạo tế bào mới.</p><h4>3. Cấp Ẩm & Bảo Vệ Da phục Hồi</h4><p>Rất nhiều nam giới bỏ qua bước dưỡng ẩm vì sợ cảm giác bết dính. Thực tế, khi thiếu nước, da sẽ tự động tiết nhiều dầu hơn để bù đắp. Một lớp gel dưỡng ẩm mỏng nhẹ, không chứa dầu sẽ giúp khóa ẩm, cân bằng lượng dầu-nước và củng cố hàng rào bảo vệ da săn chắc.</p>"
     }
-  ]
+  ],
+  "about": {
+    "stat_visits_val": "15k+",
+    "stat_years_val": "6+",
+    "stat_satisfaction_val": "99.8%",
+    "image_main": "assets/images/1.jpg",
+    "image_sub1": "assets/images/spa_img_10.jpg",
+    "image_sub2": "assets/images/spa_img_22.jpg",
+    "video_src": "img/An Spa Render 2_3.mp4"
+  }
 }

@@ -126,6 +126,8 @@ function updateLanguageUI() {
         }
     });
 
+    loadAboutSectionData(); // Dynamic About Section Loader
+
     renderServices();
     renderArticles();
 
@@ -159,6 +161,50 @@ function updateLanguageUI() {
     document.title = currentLang === "en" ? 
         "An Spa Retreat - Classic Gentleman's Sanctuary" : 
         "An Spa Retreat - Trị Liệu Nam Phong Cách Cổ Điển";
+}
+
+// Load About Section data dynamically
+function loadAboutSectionData() {
+    const aboutData = (typeof data !== "undefined" && data ? data.about : null) || (typeof initialData !== "undefined" && initialData ? initialData.about : null) || {
+        stat_visits_val: "15k+",
+        stat_years_val: "6+",
+        stat_satisfaction_val: "99.8%",
+        image_main: "assets/images/1.jpg",
+        image_sub1: "assets/images/spa_img_10.jpg",
+        image_sub2: "assets/images/spa_img_22.jpg",
+        video_src: "img/An Spa Render 2_3.mp4"
+    };
+
+    // Update stat numbers
+    const visitsEl = document.getElementById("about-stat-visits");
+    if (visitsEl) visitsEl.innerText = aboutData.stat_visits_val;
+
+    const yearsEl = document.getElementById("about-stat-years");
+    if (yearsEl) yearsEl.innerText = aboutData.stat_years_val;
+
+    const satEl = document.getElementById("about-stat-satisfaction");
+    if (satEl) satEl.innerText = aboutData.stat_satisfaction_val;
+
+    // Update images
+    const mainImg = document.getElementById("about-img-main");
+    if (mainImg) mainImg.src = aboutData.image_main;
+
+    const sub1Img = document.getElementById("about-img-sub1");
+    if (sub1Img) sub1Img.src = aboutData.image_sub1;
+
+    const sub2Img = document.getElementById("about-img-sub2");
+    if (sub2Img) sub2Img.src = aboutData.image_sub2;
+
+    // Update video tour source
+    const tourVideoSrc = document.getElementById("tour-video-source");
+    const tourVideoPlayer = document.getElementById("tour-video-player");
+    if (tourVideoSrc && tourVideoPlayer) {
+        const currentSrc = tourVideoSrc.getAttribute("src");
+        if (currentSrc !== aboutData.video_src) {
+            tourVideoSrc.src = aboutData.video_src;
+            tourVideoPlayer.load();
+        }
+    }
 }
 
 // Language flag selector logic

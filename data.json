@@ -17,7 +17,7 @@
       "explore_menu": "Explore Menu",
       "scroll_down": "Scroll Down",
       "about_tag": "THE SANCTUARY",
-      "about_title": "Classic Escape in the Heart of Saigon",
+      "about_title": "A place where gentlemen receive true skincare, relaxation, and healing.",
       "about_desc1": "An Spa Retreat is a classic gentleman's sanctuary designed to isolate you completely from Saigon's hectic speed. With warm oak wood partitions, deep leather armchairs, and dim warm yellow lighting, we have created an exclusive environment of silence and absolute rest.",
       "about_desc2": "As you enter, the soothing aromas of herbal essential oils blended with rich agarwood set the mood. Gentle Jazz and Classical melodies float in the background while our experienced therapists deliver targeted, high-performance physical recovery and refined skincare treatments tailored specifically for the modern man.",
       "stat_visits": "Gentlemen Served",
@@ -178,7 +178,7 @@
       "explore_menu": "Xem Dịch Vụ",
       "scroll_down": "Cuộn xuống",
       "about_tag": "KHOẢNG LẶNG QUÝ ÔNG",
-      "about_title": "Thánh Đường Cổ Điển Giữa Lòng Sài Gòn",
+      "about_title": "Nơi quý Ông được chăm sóc da thư giãn và chữa lành đúng nghĩa",
       "about_desc1": "An Spa Retreat là không gian spa nam phong cách cổ điển, được thiết kế để mang lại cảm giác tách biệt hoàn toàn khỏi sự xô bồ, vội vã của Sài Gòn bên ngoài. Với gam màu trầm ấm từ gỗ sồi, da thuộc và ánh đèn vàng dịu nhẹ, chúng tôi mang tới một thánh đường của sự tĩnh lặng và thư giãn tuyệt đối.",
       "about_desc2": "Ngay khi bước vào, các giác quan sẽ được đánh thức bởi hương thơm tinh dầu thảo mộc quyện cùng gỗ trầm ấm cúng. Những bản nhạc Jazz và Cổ điển êm dịu vang lên nhẹ nhàng trong khi đội ngũ kỹ thuật viên dày dặn kinh nghiệm thực hiện các liệu trình phục hồi thể chất chuyên sâu và chăm sóc da mặt tinh tế được thiết kế riêng cho phái mạnh.",
       "stat_visits": "Lượt Khách Nam",
@@ -705,8 +705,8 @@
     "stat_years_val": "6+",
     "stat_satisfaction_val": "99.8%",
     "image_main": "assets/images/1.jpg",
-    "image_sub1": "assets/images/spa_img_10.jpg",
-    "image_sub2": "assets/images/spa_img_22.jpg",
+    "image_sub1": "assets/images/1.jpg",
+    "image_sub2": "assets/images/1.jpg",
     "video_src": "img/An Spa Render 2_3.mp4"
   }
 }

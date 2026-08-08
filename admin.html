@@ -718,9 +718,17 @@
                     <label class="input-label">Tên đăng nhập / Username</label>
                     <input type="text" id="login-username" class="form-control" required placeholder="admin">
                 </div>
-                <div class="input-group" style="margin-bottom:24px;">
+                <div class="input-group" style="margin-bottom:20px;">
                     <label class="input-label">Mật khẩu / Password</label>
                     <input type="password" id="login-password" class="form-control" required placeholder="••••••••">
+                </div>
+                <div class="input-group" style="margin-bottom:24px;">
+                    <label class="input-label" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>GitHub Token (Không bắt buộc)</span>
+                        <a href="https://github.com/settings/tokens/new?scopes=repo&description=An%20Spa%20Vercel%20Admin" target="_blank" style="font-size:10px; color:#a68042; text-decoration:underline; font-weight:600;">Tạo Token</a>
+                    </label>
+                    <input type="password" id="login-github-token" class="form-control" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                    <small style="display:block; margin-top:4px; font-size:10px; color:#6b5c51; line-height:1.3; font-weight:normal;">Nhập token này để tự động cập nhật trực tiếp lên Vercel.app mà không cần máy tính laptop.</small>
                 </div>
                 <button type="submit" class="btn-save-all" style="width:100%; justify-content:center; padding:12px;">
                     <i data-lucide="log-in" style="width:16px; height:16px;"></i> Đăng Nhập / Sign In
@@ -750,7 +758,14 @@
             <li class="menu-item" data-tab="articles">
                 <button><i data-lucide="book-open"></i> Bài Viết / Blog Posts</button>
             </li>
-            <li class="menu-item" style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
+            <li class="menu-item" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; display: flex; flex-direction: column; align-items: stretch; padding-left: 20px; padding-right: 20px;">
+                <label style="font-size: 9px; text-transform: uppercase; color: var(--text-gray); margin-bottom: 6px; letter-spacing: 1px; display: block; text-align: left;">GitHub Token (Vercel Auto-Save)</label>
+                <div style="display: flex; gap: 6px;">
+                    <input type="password" id="sidebar-github-token" placeholder="Chưa cấu hình" style="flex-grow: 1; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; font-size: 11px; background: rgba(255,255,255,0.03); color: var(--text-light); outline: none;">
+                    <button onclick="saveSidebarToken()" class="btn btn-gold btn-sm" style="padding: 6px 10px; font-size: 11px; height: auto; border: none; cursor: pointer; border-radius: 4px; background: var(--accent-gold); color: white; display: flex; align-items: center; justify-content: center;">Lưu</button>
+                </div>
+            </li>
+            <li class="menu-item" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
                 <button onclick="handleLogout()"><i data-lucide="log-out"></i> Đăng Xuất / Log Out</button>
             </li>
         </ul>
@@ -1711,10 +1726,30 @@
                     }
                 }
             } catch (err) {
-                console.warn("API save failed, using local export option", err);
+                console.warn("API save failed, checking for GitHub auto-save config", err);
             }
             
-            // If backend is not available (like on static Vercel hosting)
+            // If local backend is not available (like on static Vercel hosting)
+            if (!saveSuccessful) {
+                const githubToken = localStorage.getItem("anspa_github_token");
+                if (githubToken) {
+                    showToast("Đang tự động đẩy thay đổi lên Vercel/GitHub...", "info");
+                    try {
+                        // 1. Commit data.json
+                        await commitFileToGitHub(githubToken, "data.json", JSON.stringify(data, null, 2), "Update database json via Web Admin Panel");
+                        // 2. Commit js/data.js
+                        await commitFileToGitHub(githubToken, "js/data.js", "const initialData = " + JSON.stringify(data, null, 2) + ";\n", "Update database js loader via Web Admin Panel");
+                        
+                        showToast("Đã lưu trực tiếp lên Vercel thành công! Trang web đang tự động xuất bản (mất khoảng 15-20 giây)!", "success");
+                        saveSuccessful = true;
+                    } catch (gErr) {
+                        console.error("GitHub commit failed:", gErr);
+                        showToast(`Lưu GitHub thất bại: ${gErr.message}. Tải file dự phòng...`, "error");
+                    }
+                }
+            }
+            
+            // Final fallback to file downloads if saving fails and no token/wrong token
             if (!saveSuccessful) {
                 // Trigger client-side download of data.json & js/data.js
                 try {
@@ -1829,6 +1864,7 @@
             e.preventDefault();
             const username = document.getElementById("login-username").value;
             const password = document.getElementById("login-password").value;
+            const githubTokenVal = document.getElementById("login-github-token").value.trim();
             
             const isLocalCredentialsMatch = (username === "admin" && password === "anspa2026");
 
@@ -1843,6 +1879,11 @@
                     const result = await res.json();
                     if (result.success) {
                         localStorage.setItem("anspa_admin_token", result.token);
+                        if (githubTokenVal) {
+                            localStorage.setItem("anspa_github_token", githubTokenVal);
+                        } else {
+                            localStorage.removeItem("anspa_github_token");
+                        }
                         showToast("Đăng nhập thành công!", "success");
                         
                         const overlay = document.getElementById("login-overlay");
@@ -1862,6 +1903,9 @@
             // Local fallback logic (e.g. on static hosting like Vercel)
             if (isLocalCredentialsMatch) {
                 localStorage.setItem("anspa_admin_token", "static_session_token_anspa");
+                if (githubTokenVal) {
+                    localStorage.setItem("anspa_github_token", githubTokenVal);
+                }
                 showToast("Đăng nhập Vercel thành công (Chế độ xem/tải xuống)!", "success");
                 
                 const overlay = document.getElementById("login-overlay");
@@ -1878,9 +1922,92 @@
             window.location.reload();
         }
 
-        // Initialize Lucide & Load Data
+        // GitHub Auto-Save Commit Helper
+        async function commitFileToGitHub(token, path, contentStr, message) {
+            // Encode content to Base64 (supporting UTF-8 characters)
+            const utf8Bytes = new TextEncoder().encode(contentStr);
+            let binaryStr = "";
+            for (let i = 0; i < utf8Bytes.length; i++) {
+                binaryStr += String.fromCharCode(utf8Bytes[i]);
+            }
+            const base64Content = btoa(binaryStr);
+            
+            const url = `https://api.github.com/repos/huahongquang/ansparetreat/contents/${path}`;
+            let sha = null;
+            
+            // Step 1: Get existing file SHA if it exists
+            try {
+                const getRes = await fetch(url, {
+                    headers: {
+                        "Authorization": `token ${token}`,
+                        "Accept": "application/vnd.github.v3+json"
+                    }
+                });
+                if (getRes.ok) {
+                    const meta = await getRes.json();
+                    sha = meta.sha;
+                }
+            } catch (err) {
+                console.warn(`Could not get SHA for ${path}, assuming new file.`, err);
+            }
+            
+            // Step 2: Write/Update the file
+            const body = {
+                message: message,
+                content: base64Content
+            };
+            if (sha) {
+                body.sha = sha;
+            }
+            
+            const putRes = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `token ${token}`,
+                    "Accept": "application/vnd.github.v3+json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            
+            if (!putRes.ok) {
+                const errData = await putRes.json();
+                throw new Error(errData.message || "Failed to commit file");
+            }
+            
+            return await putRes.json();
+        }
+
+        // Save Sidebar Token
+        window.saveSidebarToken = function() {
+            const token = document.getElementById("sidebar-github-token").value.trim();
+            if (token) {
+                localStorage.setItem("anspa_github_token", token);
+                const loginGithubInput = document.getElementById("login-github-token");
+                if (loginGithubInput) loginGithubInput.value = token;
+                showToast("Đã lưu GitHub Token bảo mật!", "success");
+            } else {
+                localStorage.removeItem("anspa_github_token");
+                const loginGithubInput = document.getElementById("login-github-token");
+                if (loginGithubInput) loginGithubInput.value = "";
+                showToast("Đã gỡ bỏ GitHub Token!", "info");
+            }
+        };
+
+        // Initialize Lucide, Load Data, and Populate saved token
         window.addEventListener('load', () => {
             safeCreateIcons();
+            
+            // Populate GitHub Token from localStorage if exists
+            const savedGitToken = localStorage.getItem("anspa_github_token");
+            if (savedGitToken) {
+                const sidebarGitInput = document.getElementById("sidebar-github-token");
+                if (sidebarGitInput) sidebarGitInput.value = savedGitToken;
+                
+                const loginGitInput = document.getElementById("login-github-token");
+                if (loginGitInput) loginGitInput.value = savedGitToken;
+            }
+            
             checkAuth();
         });
     </script>

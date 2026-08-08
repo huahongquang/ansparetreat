@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons (Loaded from Cloudflare CDN for maximum speed & reliability in VN) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.397.0/lucide.min.js"></script>
-    <link rel="stylesheet" href="css/style.css?v=5.5">
+    <link rel="stylesheet" href="css/style.css?v=5.8">
 </head>
 <body class="dark-theme">
 
@@ -726,8 +726,47 @@
         </div>
     </div>
 
+    <!-- AI Chat Assistant Widget -->
+    <div class="ai-chat-widget" id="ai-chat-widget">
+        <!-- Toggle Button -->
+        <button class="ai-chat-toggle" id="ai-chat-toggle" aria-label="Open AI Assistant" title="AI Tư Vấn & Đặt Lịch">
+            <span class="ai-chat-pulse"></span>
+            <i data-lucide="message-square" class="toggle-icon-open"></i>
+            <i data-lucide="x" class="toggle-icon-close" style="display: none;"></i>
+        </button>
+        
+        <!-- Chat Panel -->
+        <div class="ai-chat-panel" id="ai-chat-panel">
+            <div class="ai-chat-header">
+                <div class="ai-chat-avatar">
+                    <img src="assets/images/logo.jpg" alt="An Spa AI">
+                    <span class="avatar-status-dot"></span>
+                </div>
+                <div class="ai-chat-header-info">
+                    <div class="ai-chat-title">An Spa AI Advisor</div>
+                    <div class="ai-chat-status" data-t="ai_status">Online | Trợ lý tư vấn</div>
+                </div>
+                <button class="ai-chat-close-btn" id="ai-chat-close-btn"><i data-lucide="minus"></i></button>
+            </div>
+            
+            <div class="ai-chat-messages" id="ai-chat-messages">
+                <!-- Messages populated by JS -->
+            </div>
+            
+            <div class="ai-chat-suggestions" id="ai-chat-suggestions">
+                <!-- Suggestion chips -->
+            </div>
+            
+            <div class="ai-chat-input-area">
+                <input type="text" id="ai-chat-input" placeholder="Hỏi tôi về liệu trình, giá cả..." aria-label="Ask AI Assistant">
+                <button id="ai-chat-send" aria-label="Send Message"><i data-lucide="send"></i></button>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Database & Main Logic -->
-    <script src="js/data.js?v=5.5"></script>
-    <script src="js/main.js?v=5.5"></script>
+    <script src="js/data.js?v=5.8"></script>
+    <script src="js/main.js?v=5.8"></script>
+    <script src="js/ai-assistant.js?v=5.8"></script>
 </body>
 </html>

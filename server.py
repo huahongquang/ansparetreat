@@ -265,6 +265,20 @@ if __name__ == "__main__":
             port_arg = int(sys.argv[1])
         except ValueError:
             pass
+
+    # Synchronize js/data.js with data.json at startup if it exists
+    if os.path.exists(DATA_JSON_PATH):
+        try:
+            with open(DATA_JSON_PATH, "r", encoding="utf-8") as f:
+                db_content = json.load(f)
+            os.makedirs(os.path.dirname(DATA_JS_PATH), exist_ok=True)
+            with open(DATA_JS_PATH, "w", encoding="utf-8") as f:
+                f.write("const initialData = ")
+                json.dump(db_content, f, indent=2, ensure_ascii=False)
+                f.write(";\n")
+            print("Successfully synchronized js/data.js from data.json at startup!")
+        except Exception as e:
+            print(f"Warning: Failed to synchronize js/data.js at startup: {e}")
             
     print(f"Starting An Spa Retreat admin backend server on http://localhost:{port_arg}")
     print(f"Serving files from: {WORKSPACE_DIR}")

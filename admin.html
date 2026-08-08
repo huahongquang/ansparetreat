@@ -1716,16 +1716,26 @@
             
             // If backend is not available (like on static Vercel hosting)
             if (!saveSuccessful) {
-                // Trigger client-side download of data.json
+                // Trigger client-side download of data.json & js/data.js
                 try {
-                    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
-                    const downloadAnchor = document.createElement('a');
-                    downloadAnchor.setAttribute("href", dataStr);
-                    downloadAnchor.setAttribute("download", "data.json");
-                    document.body.appendChild(downloadAnchor);
-                    downloadAnchor.click();
-                    downloadAnchor.remove();
-                    showToast("Đã tải xuống tệp 'data.json' mới (Vercel là máy chủ tĩnh)!", "success");
+                    const dataJsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+                    const dlJson = document.createElement('a');
+                    dlJson.setAttribute("href", dataJsonStr);
+                    dlJson.setAttribute("download", "data.json");
+                    document.body.appendChild(dlJson);
+                    dlJson.click();
+                    dlJson.remove();
+
+                    setTimeout(() => {
+                        const dataJsStr = "data:text/javascript;charset=utf-8," + encodeURIComponent("const initialData = " + JSON.stringify(data, null, 2) + ";\n");
+                        const dlJs = document.createElement('a');
+                        dlJs.setAttribute("href", dataJsStr);
+                        dlJs.setAttribute("download", "data.js");
+                        document.body.appendChild(dlJs);
+                        dlJs.click();
+                        dlJs.remove();
+                        showToast("Đã tải xuống 2 tệp 'data.json' và 'data.js' mới (Vercel là máy chủ tĩnh)!", "success");
+                    }, 250);
                 } catch (err) {
                     showToast("Không thể tải xuống cấu hình!", "error");
                 }

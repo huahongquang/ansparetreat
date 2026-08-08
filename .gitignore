@@ -1,4 +1,4 @@
-﻿# Gemini / Agent folders
+# Gemini / Agent folders
 .gemini/
 .system_generated/
 
@@ -16,3 +16,6 @@ __pycache__/
 *.log
 scratch/
 temp_*.js
+
+# Raw uncompressed media
+img/anspa_video.mp4

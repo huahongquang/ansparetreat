@@ -708,7 +708,7 @@ const initialData = {
     "image_sub1": "assets/images/1.jpg",
     "image_sub2": "assets/images/1.jpg",
     "video_src": "img/An Spa Render 2_3.mp4",
-    "video_poster": "assets/images/1.jpg"
+    "video_poster": "assets/images/2048.jpg"
   },
   "faqs": [
     {

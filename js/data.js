@@ -158,7 +158,8 @@ const initialData = {
       "journal_title": "Grooming & Wellness Insights",
       "journal_desc": "Read professional skincare, muscle recovery, and lifestyle tips tailored for modern gentlemen.",
       "nav_login": "Login",
-      "btn_details": "Details"
+      "btn_details": "Details",
+      "ai_tooltip": "Ask AI Advisor"
     },
     "vi": {
       "nav_about": "Về An Spa",
@@ -318,7 +319,8 @@ const initialData = {
       "journal_title": "Kiến Thức Trị Liệu & Chăm Sóc Nam Giới",
       "journal_desc": "Chia sẻ các bí quyết chuyên sâu về chăm sóc da mặt, giải mỏi cơ bắp và lối sống lành mạnh từ chuyên gia.",
       "nav_login": "Đăng Nhập",
-      "btn_details": "Chi Tiết"
+      "btn_details": "Chi Tiết",
+      "ai_tooltip": "Trợ Lý AI Tư Vấn"
     }
   },
   "services": [

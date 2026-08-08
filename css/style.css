@@ -2109,6 +2109,32 @@ select.form-input option {
     font-family: var(--font-body);
 }
 
+/* Chat Tooltip Label next to toggle */
+.ai-chat-tooltip {
+    position: absolute;
+    right: 75px;
+    top: 15px;
+    background: rgba(247, 245, 240, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(166, 128, 66, 0.15);
+    pointer-events: none;
+    animation: tooltip-fade 1s ease-out;
+    text-transform: uppercase;
+}
+
+@keyframes tooltip-fade {
+    0% { opacity: 0; transform: translateX(10px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
 .ai-chat-toggle {
     width: 60px;
     height: 60px;
@@ -2116,18 +2142,17 @@ select.form-input option {
     background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
     border: none;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 30px rgba(166, 128, 66, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--bg-dark);
     position: relative;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
 }
 
 .ai-chat-toggle:hover {
     transform: scale(1.08);
-    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 15px 35px rgba(166, 128, 66, 0.4);
 }
 
 .ai-chat-toggle svg {
@@ -2159,10 +2184,10 @@ select.form-input option {
     width: 380px;
     height: 520px;
     border-radius: 20px;
-    background: rgba(26, 22, 20, 0.95);
+    background: rgba(247, 245, 240, 0.98); /* Luxury cream */
     backdrop-filter: blur(20px);
-    border: 1px solid var(--border-soft);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid var(--accent-gold);
+    box-shadow: 0 20px 50px rgba(166, 128, 66, 0.15);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -2180,7 +2205,7 @@ select.form-input option {
 
 .ai-chat-header {
     padding: 16px 20px;
-    background: rgba(36, 30, 27, 0.8);
+    background: rgba(239, 234, 226, 0.95); /* Soft beige header */
     border-bottom: 1px solid var(--border-soft);
     display: flex;
     align-items: center;
@@ -2209,7 +2234,7 @@ select.form-input option {
     height: 10px;
     background-color: #2ec4b6;
     border-radius: 50%;
-    border: 2px solid var(--bg-dark);
+    border: 2px solid var(--bg-dark-card);
 }
 
 .ai-chat-header-info {
@@ -2220,7 +2245,7 @@ select.form-input option {
     font-family: var(--font-heading);
     font-size: 15px;
     font-weight: 700;
-    color: var(--text-white);
+    color: var(--text-white); /* Deep charcoal */
 }
 
 .ai-chat-status {
@@ -2235,6 +2260,9 @@ select.form-input option {
     cursor: pointer;
     padding: 4px;
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ai-chat-close-btn:hover {
@@ -2264,11 +2292,11 @@ select.form-input option {
     background: transparent;
 }
 .ai-chat-messages::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(43, 34, 26, 0.1);
     border-radius: 3px;
 }
 .ai-chat-messages::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(43, 34, 26, 0.2);
 }
 
 .chat-msg {
@@ -2294,16 +2322,18 @@ select.form-input option {
 
 .chat-msg.user .chat-bubble {
     background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
-    color: var(--bg-dark);
+    color: #ffffff; /* High contrast white text on gold */
     font-weight: 500;
     border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 15px rgba(166, 128, 66, 0.15);
 }
 
 .chat-msg.ai .chat-bubble {
-    background: var(--bg-dark-card);
-    color: var(--text-white);
+    background: var(--bg-dark-card); /* White card */
+    color: var(--text-white); /* Deep charcoal */
     border: 1px solid var(--border-soft);
     border-bottom-left-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
 .chat-time {
@@ -2350,22 +2380,23 @@ select.form-input option {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    border-top: 1px solid rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(0,0,0,0.03);
 }
 
 .suggestion-chip {
     padding: 6px 12px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
+    background: #ffffff; /* White background */
     border: 1px solid var(--border-soft);
     color: var(--text-gray);
     font-size: 11.5px;
     cursor: pointer;
     transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
 
 .suggestion-chip:hover {
-    background: rgba(212, 175, 55, 0.1);
+    background: rgba(166, 128, 66, 0.08);
     border-color: var(--accent-gold);
     color: var(--accent-gold);
 }
@@ -2375,12 +2406,12 @@ select.form-input option {
     border-top: 1px solid var(--border-soft);
     display: flex;
     gap: 12px;
-    background: rgba(36, 30, 27, 0.8);
+    background: rgba(239, 234, 226, 0.95); /* Soft beige */
 }
 
 #ai-chat-input {
     flex-grow: 1;
-    background: var(--bg-dark);
+    background: #ffffff; /* White card */
     border: 1px solid var(--border-soft);
     border-radius: 12px;
     padding: 10px 16px;
@@ -2401,7 +2432,7 @@ select.form-input option {
     background: var(--accent-gold);
     border: none;
     cursor: pointer;
-    color: var(--bg-dark);
+    color: #ffffff; /* High contrast icon */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2409,7 +2440,7 @@ select.form-input option {
 }
 
 #ai-chat-send:hover {
-    background-color: var(--accent-amber);
+    background-color: var(--accent-gold-hover);
 }
 
 #ai-chat-send:active {
@@ -2427,8 +2458,9 @@ select.form-input option {
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid var(--border-soft);
-    background: var(--bg-dark);
+    background: #ffffff;
     width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .chat-card-img {
@@ -2461,7 +2493,7 @@ select.form-input option {
     padding: 6px;
     text-align: center;
     border-radius: 4px;
-    background: rgba(212, 175, 55, 0.15);
+    background: rgba(166, 128, 66, 0.1);
     color: var(--accent-gold);
     font-size: 11px;
     font-weight: 600;
@@ -2472,7 +2504,7 @@ select.form-input option {
 
 .chat-card-btn:hover {
     background: var(--accent-gold);
-    color: var(--bg-dark);
+    color: #ffffff;
 }
 
 /* Mobile responsive chat panel */
@@ -2483,9 +2515,13 @@ select.form-input option {
     }
     
     .ai-chat-panel {
-        width: 320px;
-        height: 460px;
+        width: 300px;
+        height: 440px;
         bottom: 70px;
+    }
+    
+    .ai-chat-tooltip {
+        display: none; /* Hide label on tiny screens to save space */
     }
 }
 

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Spa Retreat - Classic Gentleman's Sanctuary</title>
+    <meta name="description" content="An Spa Retreat - A classic gentleman's sanctuary in the heart of Saigon. Experience deep muscle recovery, herbal therapies, and skin grooming surrounded by warm oak wood, leather, agarwood essential oils, and soothing Jazz.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (Loaded from Cloudflare CDN for maximum speed & reliability in VN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.397.0/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=4.8">
+</head>
+<body class="dark-theme">
+
+
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="assets/images/logo.jpg" alt="An Spa Retreat" class="logo-img">
+                <span class="logo-text">AN SPA <span class="gold-text">RETREAT</span></span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#about" class="nav-link" data-t="nav_about">About</a>
+                <a href="#services" class="nav-link" data-t="nav_services">Services</a>
+                <a href="#video-tour" class="nav-link" data-t="nav_tour">Video Tour</a>
+                <a href="#branches" class="nav-link" data-t="nav_branches">Branches</a>
+                <a href="#reviews" class="nav-link" data-t="nav_reviews">Reviews</a>
+                <a href="#faq" class="nav-link" data-t="nav_faq">FAQ</a>
+            </nav>
+
+            <div class="nav-actions">
+                
+                <!-- Admin Dashboard Link -->
+                <a href="/admin" class="btn btn-gold btn-sm admin-login-btn" id="admin-login-btn" title="Bảng điều khiển Admin">
+                    <i data-lucide="lock"></i>
+                    <span data-t="nav_login">Đăng Nhập</span>
+                </a>
+
+                <!-- Language Dropdown -->
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-dropdown-btn" aria-label="Select Language">
+                        <i data-lucide="globe"></i>
+                        <span id="lang-active-text">Chọn ngôn ngữ</span>
+                        <i data-lucide="chevron-down" class="dropdown-chevron"></i>
+                    </button>
+                    <div class="lang-dropdown-content">
+                        <a href="#" data-lang="vi">Tiếng Việt</a>
+                        <a href="#" data-lang="en">English</a>
+                    </div>
+                </div>
+
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-video-wrapper">
+                <video autoplay loop muted playsinline class="hero-video" id="hero-video">
+                    <source src="assets/videos/An Spa Render 2_3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="hero-content container">
+                <h1 class="hero-title animate-fade-in" data-t="hero_title">AN SPA RETREAT</h1>
+                <p class="hero-subtitle animate-fade-in-delayed" data-t="hero_subtitle">CLASSIC GENTLEMAN'S SANCTUARY</p>
+                <p class="hero-description animate-fade-in-delayed-more" data-t="hero_desc">Step away from the city hustle. Recharge with premium male wellness therapies surrounded by oak wood, leather, agarwood aroma, and smooth Jazz.</p>
+                <div class="hero-buttons animate-fade-in-delayed-more">
+                    <button class="btn btn-gold" id="hero-book-btn" data-t="book_treatment">Book Treatment</button>
+                    <a href="#services" class="btn btn-outline" data-t="explore_menu">Explore Menu</a>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <span data-t="scroll_down">Scroll Down</span>
+                <i data-lucide="chevron-down" class="scroll-arrow"></i>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section py-24">
+            <div class="container grid-2">
+                <div class="about-text-column">
+                    <span class="section-tag gold-text" data-t="about_tag">THE SANCTUARY</span>
+                    <h2 class="section-title" data-t="about_title">Classic Escape in the Heart of Saigon</h2>
+                    <p class="section-description" data-t="about_desc1">An Spa Retreat is a classic gentleman's sanctuary designed to isolate you completely from Saigon's hectic speed. With warm oak wood partitions, deep leather armchairs, and dim warm yellow lighting, we have created an exclusive environment of silence and absolute rest.</p>
+                    <p class="section-description" data-t="about_desc2">As you enter, the soothing aromas of herbal essential oils blended with rich agarwood set the mood. Gentle Jazz and Classical melodies float in the background while our experienced therapists deliver targeted, high-performance physical recovery and refined skincare treatments tailored specifically for the modern man.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">15k+</span>
+                            <span class="stat-label" data-t="stat_visits">Gentlemen Served</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">6+</span>
+                            <span class="stat-label" data-t="stat_years">Years Expertise</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">99.8%</span>
+                            <span class="stat-label" data-t="stat_satisfaction">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image-column">
+                    <div class="image-grid">
+                        <div class="img-wrapper main-img">
+                            <!-- New Concept Image 1.jpg is used as main visual -->
+                            <img src="assets/images/1.jpg" alt="Classic Gentleman Sanctuary Cabin">
+                        </div>
+                        <div class="img-wrapper sub-img-1">
+                            <img src="assets/images/spa_img_10.jpg" alt="Acupressure Therapy">
+                        </div>
+                        <div class="img-wrapper sub-img-2">
+                            <img src="assets/images/spa_img_22.jpg" alt="Agarwood Essential Oils">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Mood / Goal Selector -->
+        <section id="goals" class="goals-section py-20 bg-dark-soft">
+            <div class="container text-center mb-16">
+                <span class="section-tag gold-text" data-t="goals_tag">DEFINE YOUR GOAL</span>
+                <h2 class="section-title" data-t="goals_title">How Do You Want to Feel?</h2>
+                <p class="section-subtitle" data-t="goals_desc">Select your primary wellness target, and we will highlight the ideal services for you.</p>
+            </div>
+            
+            <div class="container grid-5-cols">
+                <!-- Goal Card 1 -->
+                <div class="goal-card" data-goal="stress">
+                    <div class="goal-icon">
+                        <i data-lucide="feather"></i>
+                    </div>
+                    <h3 class="goal-name" data-t="goal_stress_title">Stress Relief</h3>
+                    <p class="goal-desc" data-t="goal_stress_desc">Release executive pressure and deep mental fatigue.</p>
+                    <div class="goal-stat">
+                        <span class="goal-stat-num">95%</span>
+                        <span class="goal-stat-label" data-t="goal_stress_stat">Feel Lighter</span>
+                    </div>
+                </div>
+                
+                <!-- Goal Card 2 -->
+                <div class="goal-card" data-goal="muscle">
+                    <div class="goal-icon">
+                        <i data-lucide="activity"></i>
+                    </div>
+                    <h3 class="goal-name" data-t="goal_muscle_title">Muscle Recovery</h3>
+                    <p class="goal-desc" data-t="goal_muscle_desc">Soothe stiffness after intense gym workouts or sports.</p>
+                    <div class="goal-stat">
+                        <span class="goal-stat-num">90%</span>
+                        <span class="goal-stat-label" data-t="goal_muscle_stat">Relief Achieved</span>
+                    </div>
+                </div>
+
+                <!-- Goal Card 3 -->
+                <div class="goal-card" data-goal="clarity">
+                    <div class="goal-icon">
+                        <i data-lucide="brain"></i>
+                    </div>
+                    <h3 class="goal-name" data-t="goal_clarity_title">Headache & Mind Clarity</h3>
+                    <p class="goal-desc" data-t="goal_clarity_desc">Relieve headaches, neck stiffness, and insomnia.</p>
+                    <div class="goal-stat">
+                        <span class="goal-stat-num">92%</span>
+                        <span class="goal-stat-label" data-t="goal_clarity_stat">Pain Reduced</span>
+                    </div>
+                </div>
+
+                <!-- Goal Card 4 -->
+                <div class="goal-card" data-goal="grooming">
+                    <div class="goal-icon">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <h3 class="goal-name" data-t="goal_grooming_title">Skin Detox</h3>
+                    <p class="goal-desc" data-t="goal_grooming_desc">Deep cleanse, extract oil, and revitalize male skin.</p>
+                    <div class="goal-stat">
+                        <span class="goal-stat-num">88%</span>
+                        <span class="goal-stat-label" data-t="goal_grooming_stat">Brighter Skin</span>
+                    </div>
+                </div>
+
+                <!-- Goal Card 5 -->
+                <div class="goal-card" data-goal="escape">
+                    <div class="goal-icon">
+                        <i data-lucide="compass"></i>
+                    </div>
+                    <h3 class="goal-name" data-t="goal_escape_title">Deep Escape</h3>
+                    <p class="goal-desc" data-t="goal_escape_desc">Reboot your entire sensory system and sleep soundly.</p>
+                    <div class="goal-stat">
+                        <span class="goal-stat-num">96%</span>
+                        <span class="goal-stat-label" data-t="goal_escape_stat">Better Sleep</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Menu -->
+        <section id="services" class="services-section py-24">
+            <div class="container text-center mb-16">
+                <span class="section-tag gold-text" data-t="services_tag">EXCLUSIVE MENU</span>
+                <h2 class="section-title" data-t="services_title">Tailored Wellness Experiences</h2>
+                <p class="section-subtitle" data-t="services_desc">Explore our signature therapies, meticulously formulated for men.</p>
+                
+                <!-- Category Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all" data-t="filter_all">All Services</button>
+                    <button class="filter-btn" data-filter="facial" data-t="filter_facial">Facial Care</button>
+                    <button class="filter-btn" data-filter="body" data-t="filter_body">Body Care</button>
+                </div>
+            </div>
+            <div class="container grid-3" id="services-grid">
+                <!-- Services are dynamically rendered from js/data.js -->
+            </div>
+        </section>
+
+        <!-- Video Tour & Media Showcase Section -->
+        <section id="video-tour" class="video-tour-section py-24 bg-dark-soft">
+            <div class="container grid-2">
+                <div class="video-tour-left">
+                    <span class="section-tag gold-text" data-t="video_tag">EXPERIENCE TOUR</span>
+                    <h2 class="section-title" data-t="video_title">Take a Look Inside Our Sanctuary</h2>
+                    <p class="section-description" data-t="video_desc">Step into the quiet, warm ambiance of An Spa Retreat. Watch our signature acupressure techniques, the preparation of hot basalt stones, and the soothing herbal hair wash treatments that await you.</p>
+                    
+                    <div class="shorts-grid mt-8">
+                        <div class="short-card" data-video-src="assets/videos/Short 1.mp4">
+                            <div class="short-overlay">
+                                <i data-lucide="play-circle"></i>
+                                <span data-t="short_1_label">Quick Intro</span>
+                            </div>
+                            <video muted loop playsinline class="short-thumb-video">
+                                <source src="assets/videos/Short 1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="short-card" data-video-src="assets/videos/Short 2.mp4">
+                            <div class="short-overlay">
+                                <i data-lucide="play-circle"></i>
+                                <span data-t="short_2_label">Therapy Flow</span>
+                            </div>
+                            <video muted loop playsinline class="short-thumb-video">
+                                <source src="assets/videos/Short 2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-tour-right">
+                    <div class="main-video-player shadow-xl">
+                        <!-- New sanctuary walkthrough render is used as main video -->
+                        <video id="gallery-video" controls poster="assets/images/1.jpg" class="w-full rounded-2xl">
+                            <source src="assets/videos/An Spa Render 2_3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay" id="video-overlay">
+                            <button class="play-btn" id="play-gallery-btn" aria-label="Play Video">
+                                <i data-lucide="play" class="play-icon"></i>
+                            </button>
+                            <div class="overlay-text" data-t="play_tour_text">Play Sanctuary Walkthrough</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Slider -->
+            <div class="container mt-20">
+                <h3 class="gallery-title text-center mb-10" data-t="gallery_title">Sanctuary Gallery</h3>
+                <div class="gallery-slider-wrapper">
+                    <div class="gallery-track" id="gallery-track">
+                        <div class="gallery-slide"><img src="img/_GRL0266_2048.jpg" alt="An Spa Retreat Space 1"></div>
+                        <div class="gallery-slide"><img src="img/GRL07384_2048.jpg" alt="An Spa Retreat Space 2"></div>
+                        <div class="gallery-slide"><img src="img/_GRL9968_2048.jpg" alt="An Spa Retreat Space 3"></div>
+                    </div>
+                    <button class="slider-btn prev-btn" id="gallery-prev" aria-label="Previous Slide"><i data-lucide="chevron-left"></i></button>
+                    <button class="slider-btn next-btn" id="gallery-next" aria-label="Next Slide"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section (Single Facility Rebuild) -->
+        <section id="branches" class="branches-section py-24">
+            <div class="container text-center mb-16">
+                <span class="section-tag gold-text" data-t="branches_tag">OUR LOCATION</span>
+                <h2 class="section-title" data-t="branches_title">Visit Our Saigon Sanctuary</h2>
+                <p class="section-subtitle" data-t="branches_desc">Experience absolute physical restoration and mental silence at our classic retreat in District 2.</p>
+            </div>
+            
+            <div class="container grid-2" style="align-items: stretch;">
+                <div class="location-details-col" style="display: flex;">
+                    <div class="branch-card p-8 rounded-xl border border-soft bg-dark-card shadow-xl" style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 class="branch-name mb-6 gold-text" style="font-family: var(--font-logo); font-size: 26px;">AN Spa Retreat</h3>
+                            
+                            <div class="location-info-list" style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 32px;">
+                                <p class="branch-detail" style="margin-bottom: 0;"><i data-lucide="map-pin"></i> <span>Số 12, Đường 54, KDC Văn Minh, An Phú, Quận 2, HCMC</span></p>
+                                <p class="branch-detail" style="margin-bottom: 0;"><i data-lucide="phone"></i> <span>0339 885 440</span></p>
+                                <p class="branch-detail" style="margin-bottom: 0;"><i data-lucide="clock"></i> <span data-t="footer_hours">Open Daily: 10:00 AM - 10:00 PM</span></p>
+                            </div>
+                            
+                            <div class="branch-amenities" style="border-top: 1px solid var(--border-soft); padding-top: 24px; margin-bottom: 32px;">
+                                <span class="amenity-tag"><i data-lucide="wifi"></i> Wifi</span>
+                                <span class="amenity-tag"><i data-lucide="car"></i> Parking</span>
+                                <span class="amenity-tag"><i data-lucide="door-open"></i> Private Room</span>
+                                <span class="amenity-tag"><i data-lucide="users"></i> Couple Room</span>
+                                <span class="amenity-tag"><i data-lucide="flame"></i> Sauna & Steam</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <a href="https://maps.app.goo.gl/SJY4VBAeiLkzGAgf7" target="_blank" class="btn btn-outline" data-t="btn_map">Google Map</a>
+                            <button class="btn btn-gold btn-book-branch" data-branch="AN Spa Retreat" data-t="btn_book_here">Book Here</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-map-col" style="display: flex; flex-direction: column;">
+                    <div class="map-wrapper shadow-xl" style="border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; flex-grow: 1; min-height: 400px; background-color: var(--bg-dark-card); display: flex;">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.297453006277!2d106.74549067585483!3d10.788481358964359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317525007f4608ff%3A0x9f84e9183b3a1a70!2sAN%20Spa%20Retreat!5e0!3m2!1sen!2svn!4v1722880000000!5m2!1sen!2svn" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; flex-grow: 1;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials / Client Reviews -->
+        <section id="reviews" class="reviews-section py-24 bg-dark-soft">
+            <div class="container text-center mb-16">
+                <span class="section-tag gold-text" data-t="reviews_tag">TESTIMONIALS</span>
+                <h2 class="section-title" data-t="reviews_title">What Gentlemen Say About Us</h2>
+                <p class="section-subtitle" data-t="reviews_desc">Read feedback from our guests who experienced transformation and stress relief at An Spa Retreat.</p>
+            </div>
+            
+            <div class="container reviews-slider-wrapper">
+                <div class="reviews-slider" id="reviews-slider">
+                    <!-- Review 1 -->
+                    <div class="review-slide active">
+                        <div class="review-stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="review-text" data-t="review_1_text">"As a business owner, I face intense stress weekly. After a 90-minute signature body massage and herbal head wash at the Thao Dien branch, I felt entirely reset. The technicians are professional and do not chat during treatment. Absolute gold standard."</p>
+                        <div class="review-author">
+                            <span class="author-name" data-t="review_1_author">Minh Quan Nguyen</span>
+                            <span class="author-role" data-t="review_1_role">CEO, Tech Ventures</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Review 2 -->
+                    <div class="review-slide">
+                        <div class="review-stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="review-text" data-t="review_2_text">"My muscles get extremely tight from gym training and running. The Deep Tissue massage here was incredibly effective. The therapist focused exactly on my lower back and shoulders. The herbal bags and hot stones made me feel light and relieved."</p>
+                        <div class="review-author">
+                            <span class="author-name" data-t="review_2_author">David Tran</span>
+                            <span class="author-role" data-t="review_2_role">Marathon Runner & Athlete</span>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-slide">
+                        <div class="review-stars">
+                            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                        </div>
+                        <p class="review-text" data-t="review_3_text">"I suffer from severe insomnia due to work pressure. The Sleep Inducing Combo with herbal wash and head acupressure works miracles. I literally fell asleep 20 minutes in, and slept for 8 hours straight that night. Highly recommended."</p>
+                        <div class="review-author">
+                            <span class="author-name" data-t="review_3_author">Hai Nam Huynh</span>
+                            <span class="author-role" data-t="review_3_role">Financial Consultant</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-dots" id="reviews-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog / Sanctuary Journal Section -->
+        <section id="journal" class="journal-section py-24 bg-dark-soft">
+            <div class="container text-center mb-16">
+                <span class="section-tag gold-text" data-t="journal_tag">SANCTUARY JOURNAL</span>
+                <h2 class="section-title" data-t="journal_title">Grooming & Wellness Insights</h2>
+                <p class="section-subtitle" data-t="journal_desc">Read professional skincare, muscle recovery, and lifestyle tips tailored for modern gentlemen.</p>
+            </div>
+            <div class="container grid-3" id="journal-grid">
+                <!-- Dynamically rendered blog posts -->
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section id="faq" class="faq-section py-24">
+            <div class="container text-center mb-16">
+                <span class="section-tag gold-text" data-t="faq_tag">COMMON QUESTIONS</span>
+                <h2 class="section-title" data-t="faq_title">Frequently Asked Questions</h2>
+                <p class="section-subtitle" data-t="faq_desc">Everything you need to know before visiting An Spa Retreat.</p>
+            </div>
+            
+            <div class="container max-w-3xl">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-t="faq_1_q">Is An Spa Retreat exclusively for men?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-t="faq_1_a">An Spa Retreat specializes in treatments, acupressure intensities, and skincare techniques optimized for men's body structures and skin. However, we do welcome couples and female guests in our couple rooms at all branches.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-t="faq_2_q">What is the price range and are there any extra fees?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-t="faq_2_a">Our prices range from 500,000 VND for a 60-minute session to 1,200,000 VND for premium combos. There are absolutely no hidden fees, surcharge taxes, or mandatory tips. You pay exactly the price listed on the menu.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-t="faq_3_q">Do I need to book an appointment in advance?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-t="faq_3_a">While we accept walk-in clients if slots are available, we highly recommend booking at least 1-2 hours in advance (especially for weekends) to secure your preferred slot, branch, and therapist preference.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-t="faq_4_q">Do you have private rooms and saunas?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-t="faq_4_a">Yes. We have private treatment rooms for individuals, couple rooms, and premium lounges. Our Nguyen Thi Minh Khai branch also features a luxury herbal sauna & steam room which you can use before or after your therapy.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-t="faq_5_q">Can the therapists speak English?</span>
+                        <i data-lucide="plus" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-t="faq_5_a">Yes. Our front-desk receptionists and therapists can communicate effectively in English. We ensure all international guests feel fully comfortable expressing their needs and pressure preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section py-28 relative">
+            <div class="cta-bg-wrapper">
+                <img src="assets/images/spa_img_20.jpg" alt="Spa Background" class="cta-bg-img">
+                <div class="cta-overlay"></div>
+            </div>
+            
+            <div class="container text-center relative z-10">
+                <h2 class="cta-title" data-t="cta_title">Ready to Begin Your Sanctuary Journey?</h2>
+                <p class="cta-subtitle" data-t="cta_subtitle">Experience the ultimate physical restoration and mental relaxation in Saigon.</p>
+                <button class="btn btn-gold btn-lg btn-book-now" id="cta-book-btn" data-t="cta_btn">Reserve Your Session Now</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-16">
+        <div class="container grid-4">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.jpg" alt="An Spa Retreat" class="logo-img">
+                    <span>AN SPA <span class="gold-text">RETREAT</span></span>
+                </div>
+                <p class="footer-brand-desc" data-t="footer_desc">High-end traditional Vietnamese wellness therapies and skincare tailored for the modern gentleman.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/ansspavn" target="_blank" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/ansspavn" target="_blank" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" aria-label="Zalo" class="zalo-link">Z</a>
+                    <a href="https://wa.me/qr/QOSV7GPYOGQ2B1" target="_blank" aria-label="WhatsApp"><i data-lucide="phone-call"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title" data-t="footer_menu">Menu</h4>
+                <ul class="footer-links">
+                    <li><a href="#about" data-t="nav_about">About</a></li>
+                    <li><a href="#services" data-t="nav_services">Services</a></li>
+                    <li><a href="#video-tour" data-t="nav_tour">Video Tour</a></li>
+                    <li><a href="#branches" data-t="nav_branches">Branches</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title" data-t="footer_locations">Locations</h4>
+                <ul class="footer-links">
+                    <li><span class="loc-item"><strong>An Phú (Q2):</strong> Số 12, Đường 54, KDC Văn Minh</span></li>
+                    <li><span class="loc-item"><strong>Minh Khai:</strong> 18bis/13 N.T.M.Khai, D1</span></li>
+                    <li><span class="loc-item"><strong>Dang Tran Con:</strong> 12 Dang Tran Con, D1</span></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title" data-t="footer_contact">Contact Us</h4>
+                <ul class="footer-contact-info">
+                    <li><i data-lucide="phone"></i> <span>0339 885 440</span></li>
+                    <li><i data-lucide="mail"></i> <span>booking.ansspa@gmail.com</span></li>
+                    <li><i data-lucide="calendar"></i> <span data-t="footer_hours">Open Daily: 10:00 AM - 10:00 PM</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 An Spa Retreat. All rights reserved. Designed for gentlemen's relaxation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button class="modal-close" id="modal-close" aria-label="Close Modal">
+                    <i data-lucide="x"></i>
+                </button>
+                
+                <h2 class="modal-title text-center" data-t="modal_title">Reserve Your Treatment</h2>
+                <p class="modal-subtitle text-center" data-t="modal_subtitle">Complete the fields below, and our team will contact you in 10 minutes to confirm.</p>
+                
+                <form id="booking-form" class="booking-form">
+                    <div class="form-row grid-2-cols">
+                        <div class="form-group">
+                            <label for="booking-name" class="form-label" data-t="form_name">Full Name *</label>
+                            <input type="text" id="booking-name" class="form-input" required placeholder="e.g. John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-phone" class="form-label" data-t="form_phone">Phone Number (Zalo/WhatsApp) *</label>
+                            <input type="tel" id="booking-phone" class="form-input" required placeholder="e.g. 0901234567">
+                        </div>
+                    </div>
+
+                    <div class="form-row grid-2-cols">
+                        <div class="form-group">
+                            <label for="booking-service" class="form-label" data-t="form_service">Select Service *</label>
+                            <select id="booking-service" class="form-input" required>
+                                <option value="" disabled selected data-t="form_select_service">-- Choose a Service --</option>
+                                <!-- Populated dynamically from js/data.js -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-duration" class="form-label" data-t="form_duration">Duration *</label>
+                            <select id="booking-duration" class="form-input" required>
+                                <option value="60 Mins">60 Mins</option>
+                                <option value="90 Mins" selected>90 Mins</option>
+                                <option value="120 Mins">120 Mins</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="booking-branch" value="AN Spa Retreat">
+                    <div class="form-row grid-2-cols">
+                        <div class="form-group">
+                            <label for="booking-date" class="form-label" data-t="form_date">Date *</label>
+                            <input type="date" id="booking-date" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-time" class="form-label" data-t="form_time">Time Slot *</label>
+                            <select id="booking-time" class="form-input" required>
+                                <option value="" disabled selected data-t="form_select_time">-- Choose Time --</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="11:30 AM">11:30 AM</option>
+                                <option value="01:00 PM">01:00 PM</option>
+                                <option value="02:30 PM">02:30 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="05:30 PM">05:30 PM</option>
+                                <option value="07:00 PM">07:00 PM</option>
+                                <option value="08:30 PM">08:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row grid-2-cols">
+                        <div class="form-group">
+                            <label for="booking-therapist" class="form-label" data-t="form_therapist">Therapist Preference</label>
+                            <select id="booking-therapist" class="form-input">
+                                <option value="No Preference" selected data-t="pref_no">No Preference</option>
+                                <option value="Male Therapist" data-t="pref_male">Male Therapist Only</option>
+                                <option value="Female Therapist" data-t="pref_female">Female Therapist Only</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-room" class="form-label" data-t="form_room">Room Type</label>
+                            <select id="booking-room" class="form-input">
+                                <option value="Standard Room" selected data-t="room_std">Standard Shared Room (Quiet)</option>
+                                <option value="Private Single Room" data-t="room_private">Private Single Room</option>
+                                <option value="Couple Suite" data-t="room_couple">Couple Room (Double beds)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-notes" class="form-label" data-t="form_notes">Special Instructions (e.g. focused massage areas, allergies)</label>
+                        <textarea id="booking-notes" class="form-input text-area" placeholder="e.g. Focus on lower back and shoulders..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-gold btn-block mt-4" data-t="btn_submit">Submit Reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-dialog max-w-md">
+            <div class="modal-content text-center py-10 px-8">
+                <button class="modal-close" id="success-close" aria-label="Close Modal">
+                    <i data-lucide="x"></i>
+                </button>
+                
+                <div class="success-icon-wrapper mb-6">
+                    <i data-lucide="check-circle" class="success-icon gold-text"></i>
+                </div>
+                
+                <h2 class="modal-title" data-t="success_title">Reservation Submitted!</h2>
+                <p class="modal-subtitle" data-t="success_desc">Thank you for booking with An Spa Retreat. Our guest relation specialist will call or text you shortly on Zalo/WhatsApp to confirm your slot.</p>
+                
+                <div class="booking-summary mt-6 p-4 rounded-xl bg-dark-soft text-left">
+                    <p><strong data-t="summary_service">Service:</strong> <span id="summary-service-text">-</span></p>
+                    <p><strong data-t="summary_branch">Branch:</strong> <span id="summary-branch-text">-</span></p>
+                    <p><strong data-t="summary_datetime">Date/Time:</strong> <span id="summary-time-text">-</span></p>
+                </div>
+                
+                <div class="flex-row gap-4 mt-8 justify-center">
+                    <a href="https://zalo.me/ansspa" target="_blank" class="btn btn-gold btn-sm"><span data-t="btn_zalo">Chat Zalo</span></a>
+                    <button class="btn btn-outline btn-sm" id="btn-success-done" data-t="btn_done">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Viewer Modal -->
+    <div class="modal" id="article-modal">
+        <div class="modal-dialog article-dialog">
+            <div class="modal-header">
+                <div class="article-meta-header">
+                    <span id="article-modal-date" class="gold-text">Date</span>
+                    <span class="meta-sep">•</span>
+                    <span id="article-modal-author">Author</span>
+                </div>
+                <button class="modal-close" id="article-modal-close" aria-label="Close Modal"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body article-modal-body">
+                <img id="article-modal-image" src="" alt="Article Cover" class="article-modal-cover">
+                <h2 id="article-modal-title" class="article-modal-title">Title</h2>
+                <div class="article-modal-tags" id="article-modal-tags">
+                    <!-- Dynamic badges -->
+                </div>
+                <div class="article-content-html" id="article-modal-content">
+                    <!-- HTML body -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Database & Main Logic -->
+    <script src="js/data.js?v=4.8"></script>
+    <script src="js/main.js?v=4.8"></script>
+</body>
+</html>

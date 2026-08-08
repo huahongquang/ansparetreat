@@ -2,7 +2,7 @@
 // An Spa Retreat - AI Assistant Conversational Script
 // ==========================================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+function initAIAssistant() {
     // Select elements
     const chatToggle = document.getElementById("ai-chat-toggle");
     const chatPanel = document.getElementById("ai-chat-panel");
@@ -338,7 +338,13 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
     }
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAIAssistant);
+} else {
+    initAIAssistant();
+}
 
 // Global action handler linked to chat card buttons
 window.triggerChatAction = function(action, param) {

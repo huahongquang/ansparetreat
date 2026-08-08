@@ -60,6 +60,50 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_error_response(400, f"Cú pháp đăng nhập không đúng: {e}")
             return
 
+        # 0b. API: Public Guest booking creation (No auth required)
+        if path == "/api/book":
+            content_length = int(self.headers.get("Content-Length", 0))
+            post_data = self.rfile.read(content_length)
+            try:
+                booking_payload = json.loads(post_data.decode("utf-8"))
+                
+                # Load current data
+                data = self.read_data()
+                if "bookings" not in data:
+                    data["bookings"] = []
+                
+                next_id = max([b.get("id", 0) for b in data["bookings"]]) + 1 if data["bookings"] else 1
+                
+                # Fetch service info from payload
+                service_id = int(booking_payload.get("service_id", 0))
+                services = data.get("services", [])
+                service_obj = next((s for s in services if s.get("id") == service_id), None)
+                service_title = service_obj.get("title_vi", "Dịch vụ đã chọn") if service_obj else "Dịch vụ đã chọn"
+                service_price_str = service_obj.get("price", "0") if service_obj else "0"
+                service_price = int(re.sub(r"[^0-9]", "", service_price_str)) if service_price_str else 0
+                
+                new_booking = {
+                    "id": next_id,
+                    "customer_name": booking_payload.get("customer_name"),
+                    "customer_phone": booking_payload.get("customer_phone"),
+                    "service_id": service_id,
+                    "service_title": service_title,
+                    "price": service_price,
+                    "date": booking_payload.get("date"),
+                    "time": booking_payload.get("time"),
+                    "assigned_staff_id": None,
+                    "commission_value": 0,
+                    "status": "Pending"
+                }
+                
+                data["bookings"].append(new_booking)
+                self.write_data(data)
+                
+                self.send_json_response({"success": True, "bookingId": next_id})
+            except Exception as e:
+                self.send_error_response(400, f"Error creating booking: {e}")
+            return
+
         # Check authorization for other write operations
         if not self.is_authorized():
             self.send_json_response({"success": False, "error": "Unauthorized. Please log in first."}, 401)

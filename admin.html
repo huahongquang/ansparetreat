@@ -761,6 +761,9 @@
             <li class="menu-item" data-tab="faq">
                 <button><i data-lucide="help-circle"></i> Câu Hỏi Thường Gặp / FAQs</button>
             </li>
+            <li class="menu-item" data-tab="bookings">
+                <button><i data-lucide="calendar"></i> Đặt Lịch & Tính Lương</button>
+            </li>
             <li class="menu-item" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; display: flex; flex-direction: column; align-items: stretch; padding-left: 20px; padding-right: 20px;">
                 <label style="font-size: 9px; text-transform: uppercase; color: var(--text-gray); margin-bottom: 6px; letter-spacing: 1px; display: block; text-align: left;">GitHub Token (Vercel Auto-Save)</label>
                 <div style="display: flex; gap: 6px;">
@@ -820,6 +823,13 @@
                         <div>
                             <div class="stat-value" id="stat-faq-count">0</div>
                             <div class="stat-name">FAQs / Câu Hỏi</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="calendar"></i></div>
+                        <div>
+                            <div class="stat-value" id="stat-bookings-count">0</div>
+                            <div class="stat-name">Bookings / Đặt Lịch</div>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -1107,6 +1117,121 @@
                     </table>
                 </div>
             </section>
+
+            <!-- 7. BOOKINGS & PAYROLL PANEL -->
+            <section class="panel" id="panel-bookings">
+                <!-- Sub-tabs bar -->
+                <div class="booking-tabs" style="display: flex; gap: 10px; margin-bottom: 24px; border-bottom: 1px solid var(--border-soft); padding-bottom: 12px;">
+                    <button class="btn btn-booking-subtab active" onclick="switchBookingSubtab('list')" id="subtab-btn-list" style="padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; background: var(--accent-gold); color: white;">ĐẶT LỊCH (Bookings)</button>
+                    <button class="btn btn-booking-subtab" onclick="switchBookingSubtab('staff')" id="subtab-btn-staff" style="padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-dark); background: none; border: 1px solid var(--border-gold);">NHÂN VIÊN (Staff)</button>
+                    <button class="btn btn-booking-subtab" onclick="switchBookingSubtab('payroll')" id="subtab-btn-payroll" style="padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-dark); background: none; border: 1px solid var(--border-gold);">TÍNH LƯƠNG & BÁO CÁO (Payroll & Reports)</button>
+                </div>
+
+                <!-- Sub-panel 1: Bookings List -->
+                <div class="booking-subpanel" id="booking-subpanel-list">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; text-align: left;">
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin: 0;">Danh Sách Đặt Lịch Hẹn</h4>
+                        <button class="btn btn-gold btn-sm" style="padding: 6px 12px; font-size: 12px;" onclick="openNewBookingModal()"><i data-lucide="plus" style="width:14px; height:14px; vertical-align:-2px;"></i> Tạo Lịch Hẹn Mới</button>
+                    </div>
+                    <div class="admin-table-wrapper" style="background:#ffffff; border:1px solid var(--border-soft); border-radius:4px; overflow-x:auto;">
+                        <table class="admin-table" style="width:100%; border-collapse:collapse; text-align:left; font-size: 13px;">
+                            <thead>
+                                <tr style="background:#faf9f6; border-bottom:1px solid var(--border-soft); font-size:11px; text-transform:uppercase; color:var(--text-gray); font-weight: 600;">
+                                    <th style="padding:12px 16px;">ID</th>
+                                    <th style="padding:12px 16px;">Khách Hàng</th>
+                                    <th style="padding:12px 16px;">Dịch Vụ & Giá</th>
+                                    <th style="padding:12px 16px;">Thời Gian</th>
+                                    <th style="padding:12px 16px;">Kỹ Thuật Viên</th>
+                                    <th style="padding:12px 16px;">% Hoa Hồng</th>
+                                    <th style="padding:12px 16px;">Hoa Hồng Nhận</th>
+                                    <th style="padding:12px 16px;">Trạng Thái</th>
+                                    <th style="padding:12px 16px; text-align:right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-bookings-list">
+                                <!-- Dynamic Booking List Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Sub-panel 2: Staff List -->
+                <div class="booking-subpanel" id="booking-subpanel-staff" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; text-align: left;">
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin: 0;">Quản Lý Nhân Viên Kỹ Thuật</h4>
+                        <button class="btn btn-gold btn-sm" style="padding: 6px 12px; font-size: 12px;" onclick="openNewStaffModal()"><i data-lucide="plus" style="width:14px; height:14px; vertical-align:-2px;"></i> Thêm Nhân Viên</button>
+                    </div>
+                    <div class="admin-table-wrapper" style="background:#ffffff; border:1px solid var(--border-soft); border-radius:4px; overflow-x:auto;">
+                        <table class="admin-table" style="width:100%; border-collapse:collapse; text-align:left; font-size: 13px;">
+                            <thead>
+                                <tr style="background:#faf9f6; border-bottom:1px solid var(--border-soft); font-size:11px; text-transform:uppercase; color:var(--text-gray); font-weight: 600;">
+                                    <th style="padding:12px 16px;">ID</th>
+                                    <th style="padding:12px 16px;">Họ và Tên</th>
+                                    <th style="padding:12px 16px;">Vai Trò</th>
+                                    <th style="padding:12px 16px;">Lương Cơ Bản</th>
+                                    <th style="padding:12px 16px;">% Chiết Khấu hoa hồng (CEO)</th>
+                                    <th style="padding:12px 16px; text-align:right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-staff-list">
+                                <!-- Dynamic Staff List Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Sub-panel 3: Payroll Calculator -->
+                <div class="booking-subpanel" id="booking-subpanel-payroll" style="display: none;">
+                    <div style="background:#faf9f6; border:1px solid var(--border-soft); border-radius:6px; padding:16px; margin-bottom:20px; display:flex; gap:16px; align-items:center; text-align: left;">
+                        <div class="input-group" style="margin:0; width:180px;">
+                            <label class="input-label" style="margin-bottom:4px; font-size:11px;">Chọn Tháng Tính Lương</label>
+                            <select class="form-control" id="payroll-month" onchange="calculatePayroll()" style="padding:6px 12px; font-size:13px; height:auto; background:#fff; border:1px solid var(--border-soft);">
+                                <option value="1">Tháng 1</option>
+                                <option value="2">Tháng 2</option>
+                                <option value="3">Tháng 3</option>
+                                <option value="4">Tháng 4</option>
+                                <option value="5">Tháng 5</option>
+                                <option value="6">Tháng 6</option>
+                                <option value="7">Tháng 7</option>
+                                <option value="8" selected>Tháng 8</option>
+                                <option value="9">Tháng 9</option>
+                                <option value="10">Tháng 10</option>
+                                <option value="11">Tháng 11</option>
+                                <option value="12">Tháng 12</option>
+                            </select>
+                        </div>
+                        <div class="input-group" style="margin:0; width:120px;">
+                            <label class="input-label" style="margin-bottom:4px; font-size:11px;">Năm</label>
+                            <select class="form-control" id="payroll-year" onchange="calculatePayroll()" style="padding:6px 12px; font-size:13px; height:auto; background:#fff; border:1px solid var(--border-soft);">
+                                <option value="2026" selected>2026</option>
+                                <option value="2027">2027</option>
+                            </select>
+                        </div>
+                        <div style="flex-grow:1; text-align:right;">
+                            <span style="font-size:12px; color:var(--text-gray);">Công thức: Thực Lãnh = Lương cơ bản + Hoa hồng cộng dồn từ các ca hoàn thành</span>
+                        </div>
+                    </div>
+
+                    <div class="admin-table-wrapper" style="background:#ffffff; border:1px solid var(--border-soft); border-radius:4px; overflow-x:auto;">
+                        <table class="admin-table" style="width:100%; border-collapse:collapse; text-align:left; font-size: 13px;">
+                            <thead>
+                                <tr style="background:#faf9f6; border-bottom:1px solid var(--border-soft); font-size:11px; text-transform:uppercase; color:var(--text-gray); font-weight: 600;">
+                                    <th style="padding:12px 16px;">Kỹ Thuật Viên</th>
+                                    <th style="padding:12px 16px;">Lương Cơ Bản</th>
+                                    <th style="padding:12px 16px;">Số Ca Hoàn Thành</th>
+                                    <th style="padding:12px 16px;">Tổng Doanh Thu Ca</th>
+                                    <th style="padding:12px 16px;">% Chiết Khấu</th>
+                                    <th style="padding:12px 16px;">Tổng Hoa Hồng Nhận</th>
+                                    <th style="padding:12px 16px; font-weight:700; color:var(--accent-gold);">Thực Lãnh Cuối Tháng</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-payroll-list">
+                                <!-- Dynamic Payroll Summary Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -1332,6 +1457,109 @@
         </div>
     </div>
 
+    <!-- BOOKING EDIT/ADD MODAL -->
+    <div class="modal" id="admin-booking-modal">
+        <div class="modal-dialog" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="admin-booking-modal-title">Tạo / Chỉnh Sửa Lịch Hẹn</h3>
+                <button class="modal-close" onclick="closeAdminBookingModal()"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <input type="hidden" id="admin-booking-id-field">
+                
+                <div class="form-grid-split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="input-group">
+                        <label class="input-label">Tên khách hàng *</label>
+                        <input type="text" id="admin-booking-name" class="form-control" required placeholder="e.g. Nguyễn Văn A">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Số điện thoại *</label>
+                        <input type="text" id="admin-booking-phone" class="form-control" required placeholder="e.g. 0901234567">
+                    </div>
+                </div>
+
+                <div class="form-grid-split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+                    <div class="input-group">
+                        <label class="input-label">Chọn dịch vụ *</label>
+                        <select id="admin-booking-service-select" class="form-control" onchange="autoFillBookingPrice()" required>
+                            <!-- Populated from services list -->
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Giá dịch vụ (VND) *</label>
+                        <input type="number" id="admin-booking-price" class="form-control" required placeholder="e.g. 850000">
+                    </div>
+                </div>
+
+                <div class="form-grid-split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+                    <div class="input-group">
+                        <label class="input-label">Ngày hẹn *</label>
+                        <input type="date" id="admin-booking-date" class="form-control" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Giờ hẹn *</label>
+                        <input type="time" id="admin-booking-time" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+                    <div class="input-group">
+                        <label class="input-label">Kỹ Thuật Viên phụ trách *</label>
+                        <select id="admin-booking-staff-select" class="form-control" required>
+                            <!-- Populated from staff list -->
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Trạng thái lịch hẹn *</label>
+                        <select id="admin-booking-status" class="form-control" required>
+                            <option value="Pending">Chờ Trị Liệu (Pending)</option>
+                            <option value="Completed">Hoàn Thành (Completed)</option>
+                            <option value="Cancelled">Đã Hủy (Cancelled)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="padding: 20px 0 0 0; border-top: none;">
+                <button type="button" class="btn-modal btn-modal-cancel" onclick="closeAdminBookingModal()">Hủy Bỏ</button>
+                <button type="button" class="btn-modal btn-modal-submit" onclick="submitAdminBookingForm()">Lưu Lịch Hẹn</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAFF EDIT/ADD MODAL -->
+    <div class="modal" id="admin-staff-modal">
+        <div class="modal-dialog" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="admin-staff-modal-title">Thêm / Sửa Kỹ Thuật Viên</h3>
+                <button class="modal-close" onclick="closeAdminStaffModal()"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <input type="hidden" id="admin-staff-id-field">
+                
+                <div class="input-group">
+                    <label class="input-label">Họ và Tên Nhân viên *</label>
+                    <input type="text" id="admin-staff-name" class="form-control" required placeholder="e.g. Trần Thị Mai">
+                </div>
+                <div class="input-group" style="margin-top: 12px;">
+                    <label class="input-label">Vai Trò / Vị Trí *</label>
+                    <input type="text" id="admin-staff-role" class="form-control" required value="Therapist" placeholder="e.g. Kỹ Thuật Viên">
+                </div>
+                <div class="input-group" style="margin-top: 12px;">
+                    <label class="input-label">Lương Cơ Bản Cố Định (VND) *</label>
+                    <input type="number" id="admin-staff-base-salary" class="form-control" required placeholder="e.g. 6000000">
+                </div>
+                <div class="input-group" style="margin-top: 12px;">
+                    <label class="input-label">% Chiết Khấu hoa hồng (CEO Quy Định) *</label>
+                    <input type="number" id="admin-staff-commission" class="form-control" required min="0" max="100" placeholder="e.g. 10">
+                </div>
+            </div>
+            <div class="modal-footer" style="padding: 20px 0 0 0; border-top: none;">
+                <button type="button" class="btn-modal btn-modal-cancel" onclick="closeAdminStaffModal()">Hủy Bỏ</button>
+                <button type="button" class="btn-modal btn-modal-submit" onclick="submitAdminStaffForm()">Lưu Nhân Viên</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notifications Container -->
     <div class="toast-container" id="toast-container"></div>
 
@@ -1351,11 +1579,13 @@
         // Tab switching logic
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', () => {
+                const tab = item.getAttribute('data-tab');
+                if (!tab) return;
+                
                 document.querySelectorAll('.menu-item').forEach(mi => mi.classList.remove('active'));
                 document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
                 
                 item.classList.add('active');
-                const tab = item.getAttribute('data-tab');
                 document.getElementById(`panel-${tab}`).classList.add('active');
                 
                 // Update topbar title
@@ -1364,9 +1594,12 @@
                     services: "Services CRUD Panel",
                     content: "Main Site Content Editor",
                     media: "Media Assets Library",
-                    articles: "Articles / Bài Viết CRUD Panel"
+                    articles: "Articles / Bài Viết CRUD Panel",
+                    faq: "Câu Hỏi Thường Gặp / FAQs Panel",
+                    bookings: "Quản Lý Đặt Lịch & Tính Lương"
                 };
-                document.getElementById('page-title').innerText = titleMap[tab];
+                const mappedTitle = titleMap[tab] || "Dashboard Panel";
+                document.getElementById('page-title').innerText = mappedTitle;
             });
         });
 
@@ -1425,6 +1658,19 @@
                 return;
             }
             
+            // Merge localStorage guest bookings
+            let localBookings = [];
+            try {
+                localBookings = JSON.parse(localStorage.getItem("anspa_public_bookings")) || [];
+            } catch (e) {}
+            
+            if (!data.bookings) data.bookings = [];
+            localBookings.forEach(lb => {
+                if (!data.bookings.some(b => b.id === lb.id)) {
+                    data.bookings.push(lb);
+                }
+            });
+            
             // Load media files
             try {
                 const mRes = await fetch('/api/media', {
@@ -1444,6 +1690,7 @@
             renderServicesList();
             renderArticlesList();
             renderFAQList();
+            renderBookingsCRM(); // Load bookings CRM arrays
             populateContentForm();
             renderMediaGrid();
             populateImageSelectors();
@@ -1457,6 +1704,8 @@
             if (artCount) artCount.innerText = (data.articles || []).length;
             const faqCount = document.getElementById('stat-faq-count');
             if (faqCount) faqCount.innerText = (data.faqs || []).length;
+            const bookingsCount = document.getElementById('stat-bookings-count');
+            if (bookingsCount) bookingsCount.innerText = (data.bookings || []).length;
         }
 
         // Services list builder
@@ -2346,6 +2595,444 @@
                 renderFAQList();
                 renderOverview();
             }
+        };
+
+        // ==========================================================================
+        // Bookings & Payroll System (CRM Module)
+        // ==========================================================================
+
+        // Switch Booking sub-tabs
+        window.switchBookingSubtab = function(tabId) {
+            document.querySelectorAll('.btn-booking-subtab').forEach(btn => {
+                btn.style.background = 'none';
+                btn.style.color = 'var(--text-dark)';
+                btn.style.border = '1px solid var(--border-gold)';
+            });
+            document.querySelectorAll('.booking-subpanel').forEach(panel => {
+                panel.style.display = 'none';
+            });
+            
+            const activeBtn = document.getElementById(`subtab-btn-${tabId}`);
+            if (activeBtn) {
+                activeBtn.style.background = 'var(--accent-gold)';
+                activeBtn.style.color = 'white';
+                activeBtn.style.border = 'none';
+            }
+            
+            const activePanel = document.getElementById(`booking-subpanel-${tabId}`);
+            if (activePanel) {
+                activePanel.style.display = 'block';
+            }
+            
+            if (tabId === 'payroll') {
+                calculatePayroll();
+            }
+        };
+
+        // Render everything CRM-related
+        function renderBookingsCRM() {
+            renderBookingsList();
+            renderStaffList();
+            populateBookingFormDropdowns();
+        }
+
+        // Render Bookings list
+        function renderBookingsList() {
+            const tbody = document.getElementById("admin-bookings-list");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            
+            const bookingsList = data.bookings || [];
+            bookingsList.forEach(b => {
+                const staff = (data.staff || []).find(s => s.id === b.assigned_staff_id);
+                const staffName = staff ? staff.name : "< Chưa phân phối >";
+                const staffCommRate = staff ? staff.commission_rate : 0;
+                
+                // Calculate commission value if completed
+                let commissionVal = 0;
+                if (b.status === 'Completed' && staff) {
+                    commissionVal = Math.round((b.price * staff.commission_rate) / 100);
+                    b.commission_value = commissionVal; // sync data
+                } else {
+                    b.commission_value = 0;
+                }
+                
+                const priceFormatted = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(b.price);
+                const commissionFormatted = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(b.commission_value);
+                
+                let statusLabel = "";
+                if (b.status === 'Completed') {
+                    statusLabel = `<span style="background: #e6f4ea; color: #137333; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">Hoàn Thành</span>`;
+                } else if (b.status === 'Cancelled') {
+                    statusLabel = `<span style="background: #fce8e6; color: #c5221f; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">Đã Hủy</span>`;
+                } else {
+                    statusLabel = `<span style="background: #fef7e0; color: #b06000; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">Chờ Trị Liệu</span>`;
+                }
+
+                const row = document.createElement("tr");
+                row.style.borderBottom = "1px solid var(--border-soft)";
+                row.innerHTML = `
+                    <td style="padding:12px 16px; font-weight:600;">${b.id}</td>
+                    <td style="padding:12px 16px;">
+                        <strong>${b.customer_name}</strong>
+                        <div style="font-size:11px; color:var(--text-gray); margin-top:2px;">${b.customer_phone}</div>
+                    </td>
+                    <td style="padding:12px 16px;">
+                        <div>${b.service_title}</div>
+                        <div style="font-weight:600; color:var(--text-dark); margin-top:2px;">${priceFormatted}</div>
+                    </td>
+                    <td style="padding:12px 16px;">
+                        <div>${b.date}</div>
+                        <div style="font-size:11px; color:var(--text-gray); margin-top:2px;">${b.time}</div>
+                    </td>
+                    <td style="padding:12px 16px; font-weight: 600;">${staffName}</td>
+                    <td style="padding:12px 16px; text-align:center;">${staff ? staffCommRate + '%' : '-'}</td>
+                    <td style="padding:12px 16px; font-weight:600; color:#137333;">${b.status === 'Completed' ? commissionFormatted : '-'}</td>
+                    <td style="padding:12px 16px;">${statusLabel}</td>
+                    <td style="padding:12px 16px; text-align:right; white-space:nowrap;">
+                        <button class="btn btn-sm" style="padding:4px 8px; font-size:11px; margin-right:4px; background:var(--accent-gold); color:white; border:none; border-radius:4px; cursor:pointer;" onclick="openEditBookingModal(${b.id})">Sửa</button>
+                        <button class="btn btn-sm btn-delete" style="padding:4px 8px; font-size:11px; background:#ef4444; color:white; border:none; border-radius:4px; cursor:pointer;" onclick="deleteBooking(${b.id})">Xóa</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Render Staff list
+        function renderStaffList() {
+            const tbody = document.getElementById("admin-staff-list");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            
+            const staffList = data.staff || [];
+            staffList.forEach(s => {
+                const baseSalFormatted = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(s.base_salary);
+                const row = document.createElement("tr");
+                row.style.borderBottom = "1px solid var(--border-soft)";
+                row.innerHTML = `
+                    <td style="padding:12px 16px; font-weight:600;">${s.id}</td>
+                    <td style="padding:12px 16px; font-weight:600;">${s.name}</td>
+                    <td style="padding:12px 16px; color:var(--text-gray);">${s.role}</td>
+                    <td style="padding:12px 16px; font-weight:600;">${baseSalFormatted}</td>
+                    <td style="padding:12px 16px; text-align:center; font-weight:600; color:var(--accent-gold);">${s.commission_rate}%</td>
+                    <td style="padding:12px 16px; text-align:right; white-space:nowrap;">
+                        <button class="btn btn-sm" style="padding:4px 8px; font-size:11px; margin-right:4px; background:var(--accent-gold); color:white; border:none; border-radius:4px; cursor:pointer;" onclick="openEditStaffModal(${s.id})">Sửa</button>
+                        <button class="btn btn-sm btn-delete" style="padding:4px 8px; font-size:11px; background:#ef4444; color:white; border:none; border-radius:4px; cursor:pointer;" onclick="deleteStaff(${s.id})">Xóa</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Populate dropdown selectors in Booking Modal
+        function populateBookingFormDropdowns() {
+            const serviceSelect = document.getElementById("admin-booking-service-select");
+            const staffSelect = document.getElementById("admin-booking-staff-select");
+            
+            if (serviceSelect) {
+                serviceSelect.innerHTML = "<option value=''>-- Chọn Dịch Vụ --</option>";
+                (data.services || []).forEach(s => {
+                    const opt = document.createElement("option");
+                    opt.value = s.id;
+                    opt.innerText = s.title_vi;
+                    serviceSelect.appendChild(opt);
+                });
+            }
+            
+            if (staffSelect) {
+                staffSelect.innerHTML = "<option value=''>-- Chưa Phân Phối / Tự Do --</option>";
+                (data.staff || []).forEach(s => {
+                    const opt = document.createElement("option");
+                    opt.value = s.id;
+                    opt.innerText = s.name;
+                    staffSelect.appendChild(opt);
+                });
+            }
+        }
+
+        // Auto-fill price when service changes
+        window.autoFillBookingPrice = function() {
+            const serviceId = parseInt(document.getElementById("admin-booking-service-select").value);
+            const s = (data.services || []).find(item => item.id === serviceId);
+            if (s) {
+                // Parse numeric price from format (e.g. "850.000 VND" -> 850000)
+                const numericPrice = parseInt(s.price.replace(/[^0-9]/g, "")) || 0;
+                document.getElementById("admin-booking-price").value = numericPrice;
+            }
+        };
+
+        // Open Booking Modal (Add)
+        window.openNewBookingModal = function() {
+            document.getElementById("admin-booking-modal-title").innerText = "Tạo Lịch Hẹn Mới";
+            document.getElementById("admin-booking-id-field").value = "";
+            document.getElementById("admin-booking-name").value = "";
+            document.getElementById("admin-booking-phone").value = "";
+            document.getElementById("admin-booking-service-select").value = "";
+            document.getElementById("admin-booking-price").value = "";
+            document.getElementById("admin-booking-date").value = new Date().toISOString().split("T")[0];
+            document.getElementById("admin-booking-time").value = "10:00";
+            document.getElementById("admin-booking-staff-select").value = "";
+            document.getElementById("admin-booking-status").value = "Pending";
+            
+            document.getElementById("admin-booking-modal").classList.add("active");
+        };
+
+        // Open Booking Modal (Edit)
+        window.openEditBookingModal = function(id) {
+            const b = (data.bookings || []).find(item => item.id === id);
+            if (!b) return;
+            
+            document.getElementById("admin-booking-modal-title").innerText = "Chỉnh Sửa Lịch Hẹn";
+            document.getElementById("admin-booking-id-field").value = b.id;
+            document.getElementById("admin-booking-name").value = b.customer_name;
+            document.getElementById("admin-booking-phone").value = b.customer_phone;
+            document.getElementById("admin-booking-service-select").value = b.service_id;
+            document.getElementById("admin-booking-price").value = b.price;
+            document.getElementById("admin-booking-date").value = b.date;
+            document.getElementById("admin-booking-time").value = b.time;
+            document.getElementById("admin-booking-staff-select").value = b.assigned_staff_id || "";
+            document.getElementById("admin-booking-status").value = b.status;
+            
+            document.getElementById("admin-booking-modal").classList.add("active");
+        };
+
+        // Close Booking Modal
+        window.closeAdminBookingModal = function() {
+            document.getElementById("admin-booking-modal").classList.remove("active");
+        };
+
+        // Submit Booking Form (Add/Edit)
+        window.submitAdminBookingForm = function() {
+            const idVal = document.getElementById("admin-booking-id-field").value;
+            const name = document.getElementById("admin-booking-name").value.trim();
+            const phone = document.getElementById("admin-booking-phone").value.trim();
+            const serviceId = parseInt(document.getElementById("admin-booking-service-select").value);
+            const price = parseInt(document.getElementById("admin-booking-price").value);
+            const date = document.getElementById("admin-booking-date").value;
+            const time = document.getElementById("admin-booking-time").value;
+            const staffId = parseInt(document.getElementById("admin-booking-staff-select").value) || null;
+            const status = document.getElementById("admin-booking-status").value;
+            
+            if (!name || !phone || !serviceId || isNaN(price) || !date || !time) {
+                showToast("Vui lòng điền đầy đủ các thông tin cần thiết!", "error");
+                return;
+            }
+            
+            const service = (data.services || []).find(s => s.id === serviceId);
+            const serviceTitle = service ? service.title_vi : "Dịch vụ đã chọn";
+            
+            if (!data.bookings) data.bookings = [];
+            
+            if (idVal) {
+                // Edit existing
+                const id = parseInt(idVal);
+                const idx = data.bookings.findIndex(item => item.id === id);
+                if (idx !== -1) {
+                    data.bookings[idx] = {
+                        id: id,
+                        customer_name: name,
+                        customer_phone: phone,
+                        service_id: serviceId,
+                        service_title: serviceTitle,
+                        price: price,
+                        date: date,
+                        time: time,
+                        assigned_staff_id: staffId,
+                        commission_value: 0, // calculated during render
+                        status: status
+                    };
+                    showToast("Đã cập nhật thông tin lịch hẹn!", "success");
+                }
+            } else {
+                // Add new
+                const nextId = data.bookings.length > 0 ? Math.max(...data.bookings.map(item => item.id)) + 1 : 1;
+                data.bookings.push({
+                    id: nextId,
+                    customer_name: name,
+                    customer_phone: phone,
+                    service_id: serviceId,
+                    service_title: serviceTitle,
+                    price: price,
+                    date: date,
+                    time: time,
+                    assigned_staff_id: staffId,
+                    commission_value: 0,
+                    status: status
+                });
+                showToast("Đã tạo lịch hẹn mới thành công!", "success");
+            }
+            
+            closeAdminBookingModal();
+            renderBookingsList();
+            renderOverview();
+        };
+
+        // Delete Booking
+        window.deleteBooking = function(id) {
+            if (!confirm("Bạn có chắc chắn muốn xóa lịch hẹn này?")) return;
+            const idx = data.bookings.findIndex(item => item.id === id);
+            if (idx !== -1) {
+                data.bookings.splice(idx, 1);
+                showToast("Đã xóa lịch hẹn thành công!", "success");
+                renderBookingsList();
+                renderOverview();
+            }
+        };
+
+        // Open Staff Modal (Add)
+        window.openNewStaffModal = function() {
+            document.getElementById("admin-staff-modal-title").innerText = "Thêm Nhân Viên Mới";
+            document.getElementById("admin-staff-id-field").value = "";
+            document.getElementById("admin-staff-name").value = "";
+            document.getElementById("admin-staff-role").value = "Therapist";
+            document.getElementById("admin-staff-base-salary").value = "6000000";
+            document.getElementById("admin-staff-commission").value = "10";
+            
+            document.getElementById("admin-staff-modal").classList.add("active");
+        };
+
+        // Open Staff Modal (Edit)
+        window.openEditStaffModal = function(id) {
+            const s = (data.staff || []).find(item => item.id === id);
+            if (!s) return;
+            
+            document.getElementById("admin-staff-modal-title").innerText = "Sửa Thông Tin Nhân Viên";
+            document.getElementById("admin-staff-id-field").value = s.id;
+            document.getElementById("admin-staff-name").value = s.name;
+            document.getElementById("admin-staff-role").value = s.role;
+            document.getElementById("admin-staff-base-salary").value = s.base_salary;
+            document.getElementById("admin-staff-commission").value = s.commission_rate;
+            
+            document.getElementById("admin-staff-modal").classList.add("active");
+        };
+
+        // Close Staff Modal
+        window.closeAdminStaffModal = function() {
+            document.getElementById("admin-staff-modal").classList.remove("active");
+        };
+
+        // Submit Staff Form (Add/Edit)
+        window.submitAdminStaffForm = function() {
+            const idVal = document.getElementById("admin-staff-id-field").value;
+            const name = document.getElementById("admin-staff-name").value.trim();
+            const role = document.getElementById("admin-staff-role").value.trim();
+            const baseSalary = parseInt(document.getElementById("admin-staff-base-salary").value);
+            const commission = parseInt(document.getElementById("admin-staff-commission").value);
+            
+            if (!name || !role || isNaN(baseSalary) || isNaN(commission)) {
+                showToast("Vui lòng nhập đầy đủ tất cả các trường!", "error");
+                return;
+            }
+            
+            if (!data.staff) data.staff = [];
+            
+            if (idVal) {
+                // Edit existing
+                const id = parseInt(idVal);
+                const idx = data.staff.findIndex(item => item.id === id);
+                if (idx !== -1) {
+                    data.staff[idx] = {
+                        id: id,
+                        name: name,
+                        role: role,
+                        base_salary: baseSalary,
+                        commission_rate: commission
+                    };
+                    showToast("Đã cập nhật thông tin nhân viên!", "success");
+                }
+            } else {
+                // Add new
+                const nextId = data.staff.length > 0 ? Math.max(...data.staff.map(item => item.id)) + 1 : 1;
+                data.staff.push({
+                    id: nextId,
+                    name: name,
+                    role: role,
+                    base_salary: baseSalary,
+                    commission_rate: commission
+                });
+                showToast("Đã thêm nhân viên mới thành công!", "success");
+            }
+            
+            closeAdminStaffModal();
+            renderStaffList();
+            populateBookingFormDropdowns();
+        };
+
+        // Delete Staff
+        window.deleteStaff = function(id) {
+            if (!confirm("Xóa nhân viên sẽ làm trống mục phụ trách ở các lịch hẹn liên quan. Bạn có chắc chắn?")) return;
+            const idx = data.staff.findIndex(item => item.id === id);
+            if (idx !== -1) {
+                data.staff.splice(idx, 1);
+                // Clear assignment in bookings
+                (data.bookings || []).forEach(b => {
+                    if (b.assigned_staff_id === id) {
+                        b.assigned_staff_id = null;
+                        b.commission_value = 0;
+                    }
+                });
+                showToast("Đã xóa nhân viên kỹ thuật!", "success");
+                renderStaffList();
+                renderBookingsList();
+                populateBookingFormDropdowns();
+            }
+        };
+
+        // Calculate Monthly Payroll
+        window.calculatePayroll = function() {
+            const month = parseInt(document.getElementById("payroll-month").value);
+            const year = parseInt(document.getElementById("payroll-year").value);
+            
+            const tbody = document.getElementById("admin-payroll-list");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            
+            const staffList = data.staff || [];
+            const bookingsList = data.bookings || [];
+            
+            staffList.forEach(s => {
+                // Filter completed bookings for this staff in selected month/year
+                const completedRuns = bookingsList.filter(b => {
+                    if (b.assigned_staff_id !== s.id || b.status !== 'Completed') return false;
+                    
+                    // Parse date "YYYY-MM-DD"
+                    const parts = b.date.split('-');
+                    if (parts.length === 3) {
+                        const bMonth = parseInt(parts[1]);
+                        const bYear = parseInt(parts[0]);
+                        return bMonth === month && bYear === year;
+                    }
+                    return false;
+                });
+                
+                // Calculate totals
+                const caCount = completedRuns.length;
+                const totalRevenue = completedRuns.reduce((sum, b) => sum + b.price, 0);
+                const totalCommission = completedRuns.reduce((sum, b) => {
+                    const commVal = Math.round((b.price * s.commission_rate) / 100);
+                    return sum + commVal;
+                }, 0);
+                const totalTakeHome = s.base_salary + totalCommission;
+                
+                // Formats
+                const baseSalFormatted = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(s.base_salary);
+                const revenueFormatted = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalRevenue);
+                const commissionFormatted = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalCommission);
+                const takeHomeFormatted = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalTakeHome);
+                
+                const row = document.createElement("tr");
+                row.style.borderBottom = "1px solid var(--border-soft)";
+                row.innerHTML = `
+                    <td style="padding:12px 16px; font-weight:600;">${s.name}</td>
+                    <td style="padding:12px 16px;">${baseSalFormatted}</td>
+                    <td style="padding:12px 16px; font-weight:600; text-align:center;">${caCount} ca</td>
+                    <td style="padding:12px 16px;">${revenueFormatted}</td>
+                    <td style="padding:12px 16px; text-align:center;">${s.commission_rate}%</td>
+                    <td style="padding:12px 16px; font-weight:600; color:#137333;">+ ${commissionFormatted}</td>
+                    <td style="padding:12px 16px; font-weight:700; color:var(--accent-gold); font-size:14px;">${takeHomeFormatted}</td>
+                `;
+                tbody.appendChild(row);
+            });
         };
 
         // Initialize Lucide, Load Data, and Populate saved token

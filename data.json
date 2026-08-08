@@ -746,5 +746,82 @@
       "question_en": "Can the therapists speak English?",
       "answer_en": "Yes. Our front-desk receptionists and therapists can communicate effectively in English. We ensure all international guests feel fully comfortable expressing their needs and pressure preferences."
     }
+  ],
+  "staff": [
+    {
+      "id": 1,
+      "name": "Trần Thị Mai",
+      "role": "Therapist",
+      "commission_rate": 10,
+      "base_salary": 6000000
+    },
+    {
+      "id": 2,
+      "name": "Lê Hoàng Nam",
+      "role": "Therapist",
+      "commission_rate": 12,
+      "base_salary": 6500000
+    },
+    {
+      "id": 3,
+      "name": "Phan Minh Thư",
+      "role": "Therapist",
+      "commission_rate": 10,
+      "base_salary": 6000000
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "customer_name": "Nguyễn Minh Quân",
+      "customer_phone": "0901234567",
+      "service_id": 1,
+      "service_title": "Massage Body Trị Liệu 90 Phút",
+      "price": 850000,
+      "date": "2026-08-05",
+      "time": "14:00",
+      "assigned_staff_id": 1,
+      "commission_value": 85000,
+      "status": "Completed"
+    },
+    {
+      "id": 2,
+      "customer_name": "David Trần",
+      "customer_phone": "0912345678",
+      "service_id": 2,
+      "service_title": "Liệu Trình Chăm Sóc Da Mặt Cao Cấp 60 Phút",
+      "price": 650000,
+      "date": "2026-08-06",
+      "time": "16:30",
+      "assigned_staff_id": 2,
+      "commission_value": 78000,
+      "status": "Completed"
+    },
+    {
+      "id": 3,
+      "customer_name": "Huỳnh Hải Nam",
+      "customer_phone": "0934567890",
+      "service_id": 1,
+      "service_title": "Massage Body Trị Liệu 90 Phút",
+      "price": 850000,
+      "date": "2026-08-08",
+      "time": "10:30",
+      "assigned_staff_id": 3,
+      "commission_value": 85000,
+      "status": "Completed"
+    },
+    {
+      "id": 4,
+      "customer_name": "Lâm Minh Triết",
+      "customer_phone": "0945678901",
+      "service_id": 1,
+      "service_title": "Massage Body Trị Liệu 90 Phút",
+      "price": 850000,
+      "date": "2026-08-09",
+      "time": "18:00",
+      "assigned_staff_id": 1,
+      "commission_value": 0,
+      "status": "Pending"
+    }
   ]
 }

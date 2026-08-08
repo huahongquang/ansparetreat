@@ -756,23 +756,53 @@ if (successModal) {
 
 // Form Submission
 if (bookingForm) {
-    bookingForm.addEventListener("submit", (e) => {
+    bookingForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         
         // Extract form data
         const name = document.getElementById("booking-name").value;
         const phone = document.getElementById("booking-phone").value;
-        const service = serviceSelect.value;
+        const serviceId = parseInt(serviceSelect.value) || 0;
         const duration = document.getElementById("booking-duration").value;
         const branch = branchSelect.value;
         const date = dateInput.value;
         const time = document.getElementById("booking-time").value;
         
+        // Get service title for display
+        const serviceObj = (initialData.services || []).find(s => s.id === serviceId);
+        const serviceTitle = serviceObj ? (currentLang === 'en' ? serviceObj.title_en : serviceObj.title_vi) : "Dịch vụ";
+        
         // Fill in success modal values
-        document.getElementById("summary-service-text").innerText = `${service} (${duration})`;
+        document.getElementById("summary-service-text").innerText = `${serviceTitle} (${duration})`;
         document.getElementById("summary-branch-text").innerText = branch;
         document.getElementById("summary-time-text").innerText = `${date} @ ${time}`;
         
+        const bookingData = {
+            customer_name: name,
+            customer_phone: phone,
+            service_id: serviceId,
+            date: date,
+            time: time
+        };
+
+        // Try posting to local api server
+        try {
+            const res = await fetch("/api/book", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(bookingData)
+            });
+            if (res.ok) {
+                console.log("Booking saved to server database!");
+            } else {
+                console.warn("Could not save booking to server, falling back to local storage");
+                saveBookingToLocalFallback(bookingData);
+            }
+        } catch (err) {
+            console.warn("API booking connection failed, saving to local storage fallback", err);
+            saveBookingToLocalFallback(bookingData);
+        }
+
         // Hide booking modal, show success modal
         closeBookingModal();
         if (successModal) {
@@ -780,6 +810,41 @@ if (bookingForm) {
         }
         document.body.style.overflow = "hidden";
     });
+}
+
+function saveBookingToLocalFallback(booking) {
+    let localBookings = [];
+    try {
+        localBookings = JSON.parse(localStorage.getItem("anspa_public_bookings")) || [];
+    } catch (e) {
+        localBookings = [];
+    }
+    
+    // Add id
+    const nextId = localBookings.length > 0 ? Math.max(...localBookings.map(b => b.id)) + 1000 : 1000;
+    
+    // Fetch service title and price from initialData
+    const serviceObj = (initialData.services || []).find(s => s.id === booking.service_id);
+    const serviceTitle = serviceObj ? serviceObj.title_vi : "Dịch vụ đã chọn";
+    const servicePriceStr = serviceObj ? serviceObj.price : "0";
+    const servicePrice = parseInt(servicePriceStr.replace(/[^0-9]/g, "")) || 0;
+    
+    localBookings.push({
+        id: nextId,
+        customer_name: booking.customer_name,
+        customer_phone: booking.customer_phone,
+        service_id: booking.service_id,
+        service_title: serviceTitle,
+        price: servicePrice,
+        date: booking.date,
+        time: booking.time,
+        assigned_staff_id: null,
+        commission_value: 0,
+        status: "Pending",
+        is_local_only: true
+    });
+    
+    localStorage.setItem("anspa_public_bookings", JSON.stringify(localBookings));
 }
 
 // ==========================================================================

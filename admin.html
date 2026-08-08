@@ -1191,28 +1191,60 @@
         // Fetch everything on load
         async function loadData() {
             const token = localStorage.getItem("anspa_admin_token");
+            let loadedSuccessfully = false;
+            
             try {
-                // Fetch data json
+                // Fetch data json from backend API first
                 const res = await fetch('/api/data', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
-                data = await res.json();
-                
-                // Fetch media
+                if (res.ok) {
+                    data = await res.json();
+                    loadedSuccessfully = true;
+                }
+            } catch (err) {
+                console.warn("API data fetch failed, attempting static file load", err);
+            }
+            
+            // Static fallback (e.g. on Vercel)
+            if (!loadedSuccessfully) {
+                try {
+                    const res = await fetch('/data.json');
+                    if (res.ok) {
+                        data = await res.json();
+                        loadedSuccessfully = true;
+                    }
+                } catch (err) {
+                    console.error("Static data file fetch failed", err);
+                }
+            }
+            
+            if (!loadedSuccessfully) {
+                showToast("Failed to load database config!", "error");
+                return;
+            }
+            
+            // Load media files
+            try {
                 const mRes = await fetch('/api/media', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
-                mediaFiles = await mRes.json();
-                
-                renderOverview();
-                renderServicesList();
-                renderArticlesList();
-                populateContentForm();
-                renderMediaGrid();
-                populateImageSelectors();
+                if (mRes.ok) {
+                    mediaFiles = await mRes.json();
+                } else {
+                    mediaFiles = [];
+                }
             } catch (err) {
-                showToast("Failed to connect to backend APIs", "error");
+                console.warn("Failed to load media file list, using fallback empty array", err);
+                mediaFiles = [];
             }
+            
+            renderOverview();
+            renderServicesList();
+            renderArticlesList();
+            populateContentForm();
+            renderMediaGrid();
+            populateImageSelectors();
         }
 
         // Overview panels stats
@@ -1657,6 +1689,8 @@
         async function saveToServer() {
             saveContentFormState(); // Pull edits from text inputs
             const token = localStorage.getItem("anspa_admin_token");
+            
+            let saveSuccessful = false;
 
             try {
                 const res = await fetch('/api/data', {
@@ -1667,14 +1701,34 @@
                     },
                     body: JSON.stringify(data)
                 });
-                const result = await res.json();
-                if (result.success) {
-                    showToast("Database saved & published successfully!", "success");
-                } else {
-                    showToast("Failed to save: " + result.error, "error");
+                if (res.ok) {
+                    const result = await res.json();
+                    if (result.success) {
+                        showToast("Database saved & published successfully!", "success");
+                        saveSuccessful = true;
+                    } else {
+                        showToast("Failed to save: " + result.error, "error");
+                    }
                 }
             } catch (err) {
-                showToast("Server connection error during publish", "error");
+                console.warn("API save failed, using local export option", err);
+            }
+            
+            // If backend is not available (like on static Vercel hosting)
+            if (!saveSuccessful) {
+                // Trigger client-side download of data.json
+                try {
+                    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+                    const downloadAnchor = document.createElement('a');
+                    downloadAnchor.setAttribute("href", dataStr);
+                    downloadAnchor.setAttribute("download", "data.json");
+                    document.body.appendChild(downloadAnchor);
+                    downloadAnchor.click();
+                    downloadAnchor.remove();
+                    showToast("Đã tải xuống tệp 'data.json' mới (Vercel là máy chủ tĩnh)!", "success");
+                } catch (err) {
+                    showToast("Không thể tải xuống cấu hình!", "error");
+                }
             }
         }
 
@@ -1766,27 +1820,46 @@
             const username = document.getElementById("login-username").value;
             const password = document.getElementById("login-password").value;
             
+            const isLocalCredentialsMatch = (username === "admin" && password === "anspa2026");
+
             try {
                 const res = await fetch("/api/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password })
                 });
-                const result = await res.json();
-                if (res.ok && result.success) {
-                    localStorage.setItem("anspa_admin_token", result.token);
-                    showToast("Đăng nhập thành công!", "success");
-                    
-                    // Hide overlay and load data
-                    const overlay = document.getElementById("login-overlay");
-                    overlay.style.opacity = "0";
-                    overlay.style.pointerEvents = "none";
-                    loadData();
-                } else {
-                    showToast(result.error || "Sai tài khoản hoặc mật khẩu!", "error");
+                
+                if (res.ok) {
+                    const result = await res.json();
+                    if (result.success) {
+                        localStorage.setItem("anspa_admin_token", result.token);
+                        showToast("Đăng nhập thành công!", "success");
+                        
+                        const overlay = document.getElementById("login-overlay");
+                        overlay.style.opacity = "0";
+                        overlay.style.pointerEvents = "none";
+                        loadData();
+                        return;
+                    } else {
+                        showToast(result.error || "Sai tài khoản hoặc mật khẩu!", "error");
+                        return;
+                    }
                 }
             } catch (err) {
-                showToast("Không thể kết nối máy chủ quản trị!", "error");
+                console.warn("API Auth connection failed, attempting local static fallback", err);
+            }
+            
+            // Local fallback logic (e.g. on static hosting like Vercel)
+            if (isLocalCredentialsMatch) {
+                localStorage.setItem("anspa_admin_token", "static_session_token_anspa");
+                showToast("Đăng nhập Vercel thành công (Chế độ xem/tải xuống)!", "success");
+                
+                const overlay = document.getElementById("login-overlay");
+                overlay.style.opacity = "0";
+                overlay.style.pointerEvents = "none";
+                loadData();
+            } else {
+                showToast("Sai tài khoản hoặc mật khẩu!", "error");
             }
         }
 

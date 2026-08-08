@@ -346,9 +346,9 @@ document.querySelectorAll(".nav-link").forEach(link => {
 // ==========================================================================
 
 const filterButtons = document.querySelectorAll(".filter-btn");
-const serviceCards = document.querySelectorAll(".service-card");
 
 function filterServices(category) {
+    const serviceCards = document.querySelectorAll(".service-card");
     serviceCards.forEach(card => {
         const cardCat = card.getAttribute("data-category");
         if (category === "all" || cardCat === category) {
@@ -393,6 +393,7 @@ goalCards.forEach(card => {
             document.querySelector('.filter-btn[data-filter="all"]').classList.add("active");
             
             // Highlight and filter services that match the goal
+            const serviceCards = document.querySelectorAll(".service-card");
             serviceCards.forEach(svc => {
                 const goals = svc.getAttribute("data-goals").split(",");
                 if (goals.includes(goal)) {

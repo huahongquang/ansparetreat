@@ -114,7 +114,7 @@
       "faq_3_q": "Do I need to book an appointment in advance?",
       "faq_3_a": "While we accept walk-in clients if slots are available, we highly recommend booking at least 1-2 hours in advance (especially for weekends) to secure your preferred slot, branch, and therapist preference.",
       "faq_4_q": "Do you have private rooms and saunas?",
-      "faq_4_a": "Yes. We have private treatment rooms for individuals, couple rooms, and premium lounges. Our Nguyen Thi Minh Khai branch also features a luxury herbal sauna & steam room which you can use before or after your therapy.",
+      "faq_4_a": "Yes. We have private treatment rooms for individuals, couple rooms, and premium waiting lounges. An Spa Retreat also features a luxury herbal sauna & steam room which you can enjoy during your visit.",
       "faq_5_q": "Can the therapists speak English?",
       "faq_5_a": "Yes. Our front-desk receptionists and therapists can communicate effectively in English. We ensure all international guests feel fully comfortable expressing their needs and pressure preferences.",
       "cta_title": "Ready to Begin Your Sanctuary Journey?",
@@ -275,7 +275,7 @@
       "faq_3_q": "Tôi có cần đặt lịch trước khi đến không?",
       "faq_3_a": "Để tránh phải chờ đợi (đặc biệt vào cuối tuần), chúng tôi khuyến khích quý khách nên đặt lịch trước ít nhất 1-2 tiếng để được chuẩn bị phòng và sắp xếp kỹ thuật viên tốt nhất.",
       "faq_4_q": "Spa có phòng xông hơi và bồn ngâm chân không?",
-      "faq_4_a": "Có. Chi nhánh Nguyễn Thị Minh Khai có tích hợp phòng xông hơi ướt & xông hơi thảo dược. Các bài massage body tại mọi cơ sở đều bắt đầu bằng ngâm chân thảo dược nóng giải độc.",
+      "faq_4_a": "Có. An Spa Retreat có tích hợp phòng xông hơi ướt & xông hơi thảo dược cao cấp. Toàn bộ liệu trình trị liệu body đều bắt đầu bằng ngâm chân thảo dược nóng giải độc.",
       "faq_5_q": "Nhân viên spa có nói tiếng Anh không?",
       "faq_5_a": "Có. Đội ngũ tiếp tân và kỹ thuật viên của chúng tôi đều giao tiếp tiếng Anh tốt, phục vụ chu đáo cho cả các khách hàng nước ngoài và chuyên gia quốc tế.",
       "cta_title": "Sẵn Sàng Tái Tạo Năng Lượng Cho Cơ Thể?",
@@ -735,9 +735,9 @@
     {
       "id": 4,
       "question_vi": "Spa có phòng xông hơi và bồn ngâm chân không?",
-      "answer_vi": "Có. Chi nhánh Nguyễn Thị Minh Khai có tích hợp phòng xông hơi ướt & xông hơi thảo dược. Các bài massage body tại mọi cơ sở đều bắt đầu bằng ngâm chân thảo dược nóng giải độc.",
+      "answer_vi": "Có. An Spa Retreat có tích hợp phòng xông hơi ướt & xông hơi thảo dược cao cấp. Toàn bộ liệu trình trị liệu body đều bắt đầu bằng ngâm chân thảo dược nóng giải độc.",
       "question_en": "Do you have private rooms and saunas?",
-      "answer_en": "Yes. We have private treatment rooms for individuals, couple rooms, and premium lounges. Our Nguyen Thi Minh Khai branch also features a luxury herbal sauna & steam room which you can use before or after your therapy."
+      "answer_en": "Yes. We have private treatment rooms for individuals, couple rooms, and premium waiting lounges. An Spa Retreat also features a luxury herbal sauna & steam room which you can enjoy during your visit."
     },
     {
       "id": 5,

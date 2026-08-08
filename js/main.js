@@ -140,10 +140,17 @@ function updateLanguageUI() {
         timeSelect.options[0].text = translations[currentLang]["form_select_time"];
     }
 
-    const langActiveText = document.getElementById("lang-active-text");
-    if (langActiveText) {
-        langActiveText.innerText = currentLang === "en" ? "Select Language" : "Chọn ngôn ngữ";
-    }
+    // Update active flag state
+    document.querySelectorAll(".flag-btn").forEach(btn => {
+        const img = btn.querySelector("img");
+        if (btn.getAttribute("data-lang") === currentLang) {
+            btn.style.opacity = "1";
+            if (img) img.style.borderColor = "var(--accent-gold)";
+        } else {
+            btn.style.opacity = "0.4";
+            if (img) img.style.borderColor = "transparent";
+        }
+    });
 
     // Update music toggle button text
     updateMusicButtonText();
@@ -154,38 +161,15 @@ function updateLanguageUI() {
         "An Spa Retreat - Trị Liệu Nam Phong Cách Cổ Điển";
 }
 
-// Language dropdown selector logic
-const langDropdownContent = document.querySelector(".lang-dropdown-content");
-const langDropdownBtn = document.querySelector(".lang-dropdown-btn");
-const langDropdown = document.getElementById("lang-dropdown");
-
-if (langDropdownContent) {
-    langDropdownContent.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            const lang = link.getAttribute("data-lang");
-            currentLang = lang;
-            localStorage.setItem("anspa_lang", currentLang);
-            updateLanguageUI();
-            if (langDropdown) {
-                langDropdown.classList.remove("active");
-            }
-        });
+// Language flag selector logic
+document.querySelectorAll(".flag-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const lang = btn.getAttribute("data-lang");
+        currentLang = lang;
+        localStorage.setItem("anspa_lang", currentLang);
+        updateLanguageUI();
     });
-}
-
-if (langDropdownBtn && langDropdown) {
-    langDropdownBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        langDropdown.classList.toggle("active");
-    });
-}
-
-// Close dropdown when clicking outside
-document.addEventListener("click", () => {
-    if (langDropdown) {
-        langDropdown.classList.remove("active");
-    }
 });
 
 // Render blog articles dynamically from database

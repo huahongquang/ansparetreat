@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons (Loaded from Cloudflare CDN for maximum speed & reliability in VN) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.397.0/lucide.min.js"></script>
-    <link rel="stylesheet" href="css/style.css?v=7.0">
+    <link rel="stylesheet" href="css/style.css?v=7.5">
 </head>
 <body class="dark-theme">
 
@@ -37,22 +37,14 @@
             <div class="nav-actions">
                 
                 <!-- Admin Dashboard Link -->
-                <a href="/admin" class="btn btn-gold btn-sm admin-login-btn" id="admin-login-btn" title="Bảng điều khiển Admin">
-                    <i data-lucide="lock"></i>
-                    <span data-t="nav_login">Đăng Nhập</span>
-                </a>
-
-                <!-- Language Dropdown -->
-                <div class="lang-dropdown" id="lang-dropdown">
-                    <button class="lang-dropdown-btn" aria-label="Select Language">
-                        <i data-lucide="globe"></i>
-                        <span id="lang-active-text">Chọn ngôn ngữ</span>
-                        <i data-lucide="chevron-down" class="dropdown-chevron"></i>
+                <!-- Language Selection Flags -->
+                <div class="lang-flags-selector" style="display: flex; gap: 12px; align-items: center;">
+                    <button class="flag-btn" data-lang="vi" title="Tiếng Việt" style="background: none; border: none; padding: 2px; cursor: pointer; opacity: 1; transition: opacity 0.2s, transform 0.2s; border-radius: 4px; display: flex; align-items: center; outline: none;">
+                        <img src="https://flagcdn.com/w40/vn.png" alt="Tiếng Việt" style="width: 32px; height: 22px; object-fit: cover; border-radius: 3px; border: 1.5px solid var(--accent-gold); box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: border-color 0.2s;">
                     </button>
-                    <div class="lang-dropdown-content">
-                        <a href="#" data-lang="vi">Tiếng Việt</a>
-                        <a href="#" data-lang="en">English</a>
-                    </div>
+                    <button class="flag-btn" data-lang="en" title="English" style="background: none; border: none; padding: 2px; cursor: pointer; opacity: 0.4; transition: opacity 0.2s, transform 0.2s; border-radius: 4px; display: flex; align-items: center; outline: none;">
+                        <img src="https://flagcdn.com/w40/gb.png" alt="English" style="width: 32px; height: 22px; object-fit: cover; border-radius: 3px; border: 1.5px solid transparent; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: border-color 0.2s;">
+                    </button>
                 </div>
 
                 <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
@@ -778,8 +770,8 @@
     </div>
 
     <!-- JavaScript Database & Main Logic -->
-    <script src="js/data.js?v=7.0"></script>
-    <script src="js/main.js?v=7.0"></script>
-    <script src="js/ai-assistant.js?v=7.0"></script>
+    <script src="js/data.js?v=7.5"></script>
+    <script src="js/main.js?v=7.5"></script>
+    <script src="js/ai-assistant.js?v=7.5"></script>
 </body>
 </html>
